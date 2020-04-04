@@ -15,7 +15,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-04-01T00:00:00-04:00" />
 <script type="application/ld+json">
-{"headline":"A deep dive into variational auto-encoder","dateModified":"2020-04-01T00:00:00-04:00","datePublished":"2020-04-01T00:00:00-04:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"ctawong.com/vae.html"},"url":"ctawong.com/vae.html","description":"An in-depth notes on VAE, with pytorch step-by-step explanation","@context":"https://schema.org"}</script>
+{"datePublished":"2020-04-01T00:00:00-04:00","description":"An in-depth notes on VAE, with pytorch step-by-step explanation","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"ctawong.com/vae.html"},"url":"ctawong.com/vae.html","headline":"A deep dive into variational auto-encoder","dateModified":"2020-04-01T00:00:00-04:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="ctawong.com/feed.xml" title="Andrew Wong" /><script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -87,10 +87,10 @@ MathJax.Hub.Config({
 <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.0/dist/mermaid.min.js"></script>
 <div class="mermaid">
 graph LR
-  P("Draw from<br />distribution $P(z)$") --&gt; A
-  A(("latent<br />variable $z$")) --&gt; H(Hidden<br />process )
-  H --&gt;X((observed<br />image $x$))
-  X--&gt;Q("$q(z\vert X)$")
+  P("Draw from<br />distribution P(z)") --&gt; A
+  A(("latent<br />variable z")) --&gt; H(Hidden<br />process )
+  H --&gt;X((observed<br />image x))
+  X--&gt;Q("q(z| X)")
   Q--&gt;P
   style H fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5, 5
 </div>
