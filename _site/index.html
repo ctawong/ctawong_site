@@ -9,13 +9,15 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="machine learning, physics, biotechnology" />
 <meta property="og:description" content="machine learning, physics, biotechnology" />
-<link rel="canonical" href="ctawong.com/" />
-<meta property="og:url" content="ctawong.com/" />
+<link rel="canonical" href="http://localhost:4000/" />
+<meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="Andrew Wong" />
 <script type="application/ld+json">
-{"description":"machine learning, physics, biotechnology","@type":"WebSite","url":"ctawong.com/","name":"Andrew Wong","headline":"Andrew Wong","@context":"https://schema.org"}</script>
+{"@type":"WebSite","url":"http://localhost:4000/","headline":"Andrew Wong","name":"Andrew Wong","description":"machine learning, physics, biotechnology","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="ctawong.com/feed.xml" title="Andrew Wong" /><script type="text/x-mathjax-config">
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Andrew Wong" /><script src="https://identity-js.netlify.com/v1/netlify-identity-widget.js"></script>
+
+<script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   jax: ["input/TeX", "output/HTML-CSS"],
   tex2jax: {
@@ -47,7 +49,18 @@ MathJax.Hub.Config({
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home">
+        <div class="home"><script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+
 <h2 class="post-list-heading">Articles</h2>
     <ul class="post-list"><li><!--       <span class="post-meta">Apr 1, 2020</span>  -->
         <h3>
