@@ -6,19 +6,22 @@ An in-depth notes on VAE. Part 2 covers pytorch implementation.
 
 In this article, I will go through implementing variational autoencoder step-by-step. The following code is tested on pytorch 1.4.  Jupyter notebook can be found [here](https://github.com/ctawong/variational_autoencoder_mnist/blob/master/variational_auto-encoder_mnist.ipynb).
 
-Part 1 of this article is [here]({% post_url 2020-4-1-vae %}).
+Part 1 of this article is \[here]({% post_url 2020-4-1-vae %}).
 
 This article will cover:
-- Model implementation
-- Application to MNIST dataset
-	- Generate more training examples
-	- Interpolation
-	- Visualize latent variables by t-SNE.
+
+* Model implementation
+* Application to MNIST dataset 		
+- Generate more training examples 		
+- Interpolation
+- Visualize latent variables by t-SNE.
 
 ## Code implementation
 
 ### Model definition
+
 First we define the parameters to be used in the model.
+
 ```python
 import torchvision
 import torch
@@ -39,7 +42,9 @@ decoder_hidden_size = latent_size*2
 max_epochs = 10
 opt = 'adam'  # adam or rms
 ```
+
 Next, load the training dataset. Torchvision provides an interface that can conveniently load the MNIST data. They are 28 x 28 pixel grey scale images. We will later convert them to black-and-white images for simplicity. 
+
 ```python
 train_data = torch.utils.data.DataLoader(
 torchvision.datasets.MNIST(data_dir, train=True, download=True,
@@ -50,9 +55,10 @@ torchvision.datasets.MNIST(data_dir, train=True, download=True,
                          ])),
                         batch_size=train_batch_size, shuffle=True)
 ```
+
 We then define the encoder and decoder models. The encoder coverts the digit image latent variable $z$. The decoder goes the other way, i.e. converting $z$ back to image and compare how well we get back the original image. The process is called auto-encoding. The process is like:
 
-![VAE process flowchart](vae_flowchart.PNG)
+![VAE process flowchart](/assets/uploads/vae_flowchart.png)
 
 ```python
 class Encode(nn.Module):
@@ -104,12 +110,15 @@ class Decode(nn.Module):
         x = self.network(z)
         return F.sigmoid(x).detach().cpu().numpy() > 0.5
 ```
+
 Both `Encode` and `Decode` classes have a 3-layer neural network. Previously I said `Encode` converts image to latent variable. Well, that's not entirely correct. The neural network actually infers the **distribution** of latent variable $z$ that represent the image. It is modeled as standard distribution, so we learn two *vectors*: the mean and variance of the  distribution.
 
-As I detailed in [Part 1]({% post_url 2020-4-1-vae %}), we need to calculate the likelihood of how well the reconstructed image is compared to the original.  That's the output of the `Decode.forward(z, image)` function which calculates the Bernouli distribution with reference to the original image. Since VAE is a generative model, you can generate a new image by calling `Decode.generateImage(z)`.
+As I detailed in \[Part 1]({% post_url 2020-4-1-vae %}), we need to calculate the likelihood of how well the reconstructed image is compared to the original.  That's the output of the `Decode.forward(z, image)` function which calculates the Bernouli distribution with reference to the original image. Since VAE is a generative model, you can generate a new image by calling `Decode.generateImage(z)`.
 
 ### Training
+
 Below are the codes that executes training.
+
 ```python
 encode = Encode(data_size = data_size, 
                  latent_size = latent_size, 
@@ -170,14 +179,17 @@ for epoch in range(max_epochs):
     if epoch%1 == 0:
         print('%d:\t%1.2f\t%1.2f\t%1.2f\t%1.1f'%(epoch, reg_ep, loglike_ep, reg_ep+loglike_ep, time.time()-start_time))
 ```
+
 You have two choices of optimizer, Adam or RMS prop. In my test, Adam is slightly superior.
 
-The `lowerBound` is the function that we need to *maximize*. Since the optimizer minimize the objective function, we need to flip the sign of our loss, `loss = -lowerBound ` to make it work. The lower bound is composed of two terms, the likelihood and the regularization terms.  As detailed in [Part 1]({% post_url 2020-4-1-vae %}), the likelihood term (`loglike`) does the main job of matching the generated image of the original one, while the regularization term (`reg`) makes sure the latent variables roughly follows standard normal distribution.
+The `lowerBound` is the function that we need to *maximize*. Since the optimizer minimize the objective function, we need to flip the sign of our loss, `loss = -lowerBound` to make it work. The lower bound is composed of two terms, the likelihood and the regularization terms.  As detailed in \[Part 1]({% post_url 2020-4-1-vae %}), the likelihood term (`loglike`) does the main job of matching the generated image of the original one, while the regularization term (`reg`) makes sure the latent variables roughly follows standard normal distribution.
 
 ## Using the model
 
 ## Regenerate images
+
 After training, let's test the process of encoding and decoding back to the original image
+
 ```python
 numSamples = 10000
 data = torch.utils.data.DataLoader(
@@ -203,10 +215,13 @@ axs[0].axis('off')
 axs[1].axis('off')
 plt.title(str(labels[i]) );``
 ```
-Below the original digit is on the left and the regenerated one is on the right. You can see the model is encoding and decoding the digit pretty well.
-![Regenerate digit](vae_regenerate_digit.png)
 
-### Generate more images
+Below the original digit is on the left and the regenerated one is on the right. You can see the model is encoding and decoding the digit pretty well. 
+
+![](/assets/uploads/vae_regenerate_digit.png)
+
+### Generate more training images
+
 We can use the generative feature of the model to produce more training images. Below is an example codes of generating more images with digit 6.
 
 ```python
@@ -223,10 +238,13 @@ for i in range(numSamples):
     axs[int(i/5), int(i%5) ].imshow(img)
     axs[int(i/5), int(i%5) ].axis('off')
 ```
-![enter image description here](vae_more_examples.png)
+
+![enter image description here](/assets/uploads/vae_more_examples.png)
 
 ### mixing digits
+
 We can calculate the average latent variable for each digit, then average them with each other to create mixture images of two digits. 
+
 ```python
 fig, axs = plt.subplots(10, 10)
 fig.set_figheight(15)
@@ -239,9 +257,11 @@ for digit1 in range(0, 10):
         axs[digit1, digit2].imshow( img)
         axs[digit1, digit2].axis('off')
 ```
-![](mix digit image here)
+
+![](/assets/uploads/vae_mix_digit_matrix.png)
 
 ### Interpolation
+
 Finally, we can generate "intermediate" images between two digits through interpolation.
 
 ```python
@@ -265,4 +285,35 @@ for i in range(10):
     axs[i].axis('off')
 ```
 
-![enter image description here](interpolation%20image%20here)
+![enter image description here](/assets/uploads/vae_digit_interpolation.png)
+
+### Visualize latent variables
+
+We can visualize the high dimensional latent variables using t-SNE.
+
+```python
+from sklearn.manifold import TSNE
+import seaborn as sns
+import pandas as pd
+feat_cols = [ 'z'+str(i) for i in range(z.shape[1]) ]
+df = pd.DataFrame(np.array(z.detach().cpu()) ,columns=feat_cols)
+df['digit'] = labels
+df['label'] = df['digit'].apply(lambda i: str(i))
+tsne = TSNE(n_components=2, verbose=0, perplexity=40, n_iter=1000)
+tsne_results = tsne.fit_transform(df)
+df['tsne-2d-one'] = tsne_results[:,0]
+df['tsne-2d-two'] = tsne_results[:,1]
+plt.figure(figsize=(16,10))
+sns.scatterplot(
+    x="tsne-2d-one", y="tsne-2d-two",
+    hue="digit",
+    palette=sns.color_palette("hls", 10),
+    data=df,
+    legend="full",
+    alpha=0.3
+)
+```
+
+
+
+![](/assets/uploads/vae_tsne.png)
