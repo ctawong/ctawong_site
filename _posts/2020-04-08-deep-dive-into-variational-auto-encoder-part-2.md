@@ -106,7 +106,7 @@ class Decode(nn.Module):
 ```
 Both `Encode` and `Decode` classes have a 3-layer neural network. Previously I said `Encode` converts image to latent variable. Well, that's not entirely correct. The neural network actually infers the **distribution** of latent variable $z$ that represent the image. It is modeled as standard distribution, so we learn two *vectors*: the mean and variance of the  distribution.
 
-As I detailed in [Part 1](vae_part1.html), we need to calculate the likelihood of how well the reconstructed image is compared to the original.  That's the output of the `Decode.forward(z, image)` function which calculates the Bernouli distribution with reference to the original image. Since VAE is a generative model, you can generate a new image by calling `Decode.generateImage(z)`.
+As I detailed in [Part 1]({% post_url 2020-4-1-vae %}), we need to calculate the likelihood of how well the reconstructed image is compared to the original.  That's the output of the `Decode.forward(z, image)` function which calculates the Bernouli distribution with reference to the original image. Since VAE is a generative model, you can generate a new image by calling `Decode.generateImage(z)`.
 
 ### Training
 Below are the codes that executes training.
@@ -172,7 +172,7 @@ for epoch in range(max_epochs):
 ```
 You have two choices of optimizer, Adam or RMS prop. In my test, Adam is slightly superior.
 
-The `lowerBound` is the function that we need to *maximize*. Since the optimizer minimize the objective function, we need to flip the sign of our loss, `loss = -lowerBound ` to make it work. The lower bound is composed of two terms, the likelihood and the regularization terms.  As detailed in [Part 1](vae_part1.html#model-for-mnist-dataset), the likelihood term (`loglike`) does the main job of matching the generated image of the original one, while the regularization term (`reg`) makes sure the latent variables roughly follows standard normal distribution.
+The `lowerBound` is the function that we need to *maximize*. Since the optimizer minimize the objective function, we need to flip the sign of our loss, `loss = -lowerBound ` to make it work. The lower bound is composed of two terms, the likelihood and the regularization terms.  As detailed in [Part 1]({% post_url 2020-4-1-vae %}), the likelihood term (`loglike`) does the main job of matching the generated image of the original one, while the regularization term (`reg`) makes sure the latent variables roughly follows standard normal distribution.
 
 ## Using the model
 
