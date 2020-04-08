@@ -12,13 +12,16 @@ This article will cover:
 
 * Model implementation
 * Application to MNIST dataset 		
-- Generate more training examples 		
-- Interpolation
-- Visualize latent variables by t-SNE.
+* Generate more training examples 		
+* Interpolation
+* Visualize latent variables by t-SNE.
 
 ## Code implementation
 
 ### Model definition
+
+![VAE process flowchart](/assets/uploads/vae_flowchart.png)
+
 
 First we define the parameters to be used in the model.
 
@@ -58,7 +61,6 @@ torchvision.datasets.MNIST(data_dir, train=True, download=True,
 
 We then define the encoder and decoder models. The encoder coverts the digit image latent variable $z$. The decoder goes the other way, i.e. converting $z$ back to image and compare how well we get back the original image. The process is called auto-encoding. The process is like:
 
-![VAE process flowchart](/assets/uploads/vae_flowchart.png)
 
 ```python
 class Encode(nn.Module):
@@ -313,7 +315,5 @@ sns.scatterplot(
     alpha=0.3
 )
 ```
-
-
 
 ![](/assets/uploads/vae_tsne.png)
