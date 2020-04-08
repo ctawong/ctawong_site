@@ -2,6 +2,8 @@
 layout: post
 title: Deep dive into variational auto-encoder (Part 2)
 ---
+An in-depth notes on VAE. Part 2 covers pytorch implementation.
+
 In this article, I will go through implementing variational autoencoder step-by-step. The following code is tested on pytorch 1.4.  Jupyter notebook can be found [here](https://github.com/ctawong/variational_autoencoder_mnist/blob/master/variational_auto-encoder_mnist.ipynb).
 
 Part 1 of this article is [here]({% post_url 2020-4-1-vae %}).
