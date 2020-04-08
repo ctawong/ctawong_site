@@ -1,7 +1,7 @@
 ---
 title: Solver for Flow game
 layout: post
-permalink: flow_solver.html
+#permalink: flow_solver.html
 excerpt: A solver for popular mobile phone game <i>Flow</i>
 author: Andrew Wong
 ---
