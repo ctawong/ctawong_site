@@ -2,6 +2,7 @@
 layout: post
 title: Deep dive into variational auto-encoder (Part 2)
 categories: machine_learning
+permalink: /articles/vae_part2.html
 ---
 An in-depth notes on VAE. Part 2 covers pytorch implementation.
 

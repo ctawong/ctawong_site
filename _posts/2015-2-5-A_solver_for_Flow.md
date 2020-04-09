@@ -2,7 +2,7 @@
 title: Solver for Flow game
 layout: post
 categories: machine_learning
-#permalink: flow_solver.html
+permalink: articles/flowsolver.html
 excerpt: A solver for popular mobile phone game <i>Flow</i>
 #author: Andrew Wong
 ---

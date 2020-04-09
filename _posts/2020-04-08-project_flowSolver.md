@@ -4,8 +4,8 @@ layout: post
 categories: project
 excerpt: A javascript solver for popular mobile phone game <i>Flow</i>
 icon: /assets/flowSolver/flowSolver.png
+permalink: /projects/flowsolver
 ---
-
 
 <style>
 
@@ -40,4 +40,6 @@ Size:  <input> <span class ="range" id="range"></span><button>reset</button>
 <script src="/assets/flowSolver/flowSolver.js"></script>
 <script src="/assets/flowSolver/flowSolver_solve.js"></script>
 
-[github](https://github.com/ctawong/flowSolver)
+[Link to article]({% post_url 2015-2-5-A_solver_for_Flow %})
+<br>
+[Link to github](https://github.com/ctawong/flowSolver)
