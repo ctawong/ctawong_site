@@ -1,20 +1,22 @@
 ---
 layout: post
 title: Deep dive into variational auto-encoder (Part 2)
+categories: machine_learning
 ---
 An in-depth notes on VAE. Part 2 covers pytorch implementation.
 
 In this article, I will go through implementing variational autoencoder step-by-step. The following code is tested on pytorch 1.4.  Jupyter notebook can be found [here](https://github.com/ctawong/variational_autoencoder_mnist/blob/master/variational_auto-encoder_mnist.ipynb).
 
+One of the most powerful application of auto-encoder is that it can generate gradual changes through interpolation of latten variables. For example, we can produce "intermediate digits between 1 and 4:
+
+![enter image description here](/assets/uploads/vae_digit_interpolation.png)
+
 Part 1 of this article is \[here]({% post_url 2020-4-1-vae %}).
 
 This article will cover:
 
-* Model implementation
-* Application to MNIST dataset 		
-* Generate more training examples 		
-* Interpolation
-* Visualize latent variables by t-SNE.
+* TOC
+{:toc}
 
 ## Code implementation
 
@@ -291,7 +293,7 @@ for i in range(10):
 
 ### Visualize latent variables
 
-We can visualize the high dimensional latent variables using t-SNE.
+Finally, we can visualize the high dimensional latent variables using t-SNE.
 
 ```python
 from sklearn.manifold import TSNE

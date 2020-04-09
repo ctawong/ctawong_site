@@ -45,16 +45,13 @@ show_excerpts: true  # show article excerpts on front page
 mermaid:
   src: 'https://cdn.jsdelivr.net/npm/mermaid@8.4.0/dist/mermaid.min.js'
 
-includes:
-  - _pages/
-
-#header_pages:
-#  - about.markdown
-#  - _pages/articles.markdown
+includes: [_pages]
 
 header_pages:
   - articles.markdown
+  - projects.markdown
   - about.markdown
+
 
 
 
