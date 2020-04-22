@@ -12,7 +12,7 @@ One of the most powerful application of auto-encoder is that it can generate gra
 
 ![enter image description here](/assets/uploads/vae_digit_interpolation.png)
 
-Part 1 of this article is \[here]({% post_url 2020-4-1-vae %}).
+Part 1 of this article is [here]({% post_url 2020-4-1-vae %}).
 
 This article will cover:
 
