@@ -1,0 +1,43 @@
+date,category,content
+2020/06/14,Math,[Law of unconscious statistician](https://en.wikipedia.org/wiki/Law_of_the_unconscious_statistician)
+2020/01/02,Biology,Live bufferfly's wing doesn't lean that forward ([link](https://emilydamstra.com/news/please-enough-dead-butterflies/))
+2019/11/06,Biology,Farber is a pioneer for treating cancer with drugs (chemotherapy)
+2020/04/01,Medical,[PCA](https://www.alz.org/alzheimers-dementia/what-is-dementia/types-of-dementia/posterior-cortical-atrophy) is a rare form of dementia that affects vision
+2020/05/01,Medical,Anti-viral drug remdesivir works by terminating RNA polymerase activity of covid19
+2020/10/28,Biotech,[Mission Bio](https://missionbio.com/) is like 10x but target sequencing library prep on single cell.
+2019/08/01,Biotech,Clonoseq from Adaptive biotech is an FDA approved NGS assay for monitoring minimal residual diseases in bone marrow sample in Lymphold cancer. The alternative is multiparametric flow cytometry but clonoseq is (10-100x) more sensitive.
+2020/04/01,Machine learning,Transforming autoencoder uses capsules to learn pose of features.
+2020/04/01,History,Al Hubbard was LSD pioneer (How to change your mind)
+2019/12/22,History,Islam’s first Khalifa (ruler): Abu Bakr. Second: Omar
+2019/10/24,History,George Whitefield is a Methodist preacher associated with great awakening
+2020/04/01,History,Johnny Appleseed was a pioneer who introduced apple tree in US.
+2020/04/01,U.S.,"The 3 clue method (MSV: meaning,sentence structure, visual) for english learning is bad. Better way is to learn phonics and read the word."
+2020/05/01,U.S.,[1619 project](https://www.nytimes.com/interactive/2019/08/14/magazine/1619-america-slavery.html)  by NYT is a series of essays focus on early American slavery. It has drawn  [criticism](https://en.wikipedia.org/wiki/The_1619_Project#Critical_response)  as non-historical and promote democratic identity politics
+2020/05/01,U.S.,[Cottage food law](https://www.pickyourown.org/CottageFoodLawsByState.htm) allows people to sell homemade foods. Regulation varies by state
+2020/05/01,U.S.,Ray Dalio found Bridgewater (an investment firm) in CT
+2020/04/01,U.S.,Fort Knox stores most gold in the U.S.
+2020/05/01,U.S.,Ana Monte was a Cuban spy at the top of DIA
+2020/05/01,U.S.,"Police officer can pull you over for any reason he can come up with (supported by a supreme court case), and search your car with warranty because he has reasonable suspicsion."
+2020/05/01,Psychology,"To change people’s mind, ask people to explain why they believe in something. That lowers their confidence. (source: a podcast)"
+2019/05/01,Linux,"There are three copy and paste buffers: cutbuffer (depreciated), PRIMARY selection (when copy paste with mouse selection and middle click), and CLIPBOARD (when using copy and paste from menu). VNC syncs cutbuffer that's why copy and paste between host and client often doesn't work. ([autoselcut](https://www.nongnu.org/autocutsel/))"
+2019/11/01,Business,"Porter's [five forces](https://drive.google.com/file/d/1ow19U0wbhdAalFWVcaiqSULNjNaUG_RS/view?usp=drivesdk)  that shapes strategy: Established rivals, customers, suppliers, entrants, substitute offerings"
+2020/04/01,Business,"Executive presence: confidence, courage, connect (from a training)"
+2020/04/01,Business,"Good email subject line: Summarize the message. Not generic. Clearly communicate the purpose."
+2014/08/01,Business,"Leadership is to do things (1) for the benefit of a group, and (2) that one wasn’t asked to do. ([link](http://michaelochurch.wordpress.com/2014/02/06/if-you-stop-promoting-from-within-soon-you-cant/))"
+2014/03/01,Business,"In an age when innovation is increasingly a group endeavor, it also cares about a lot of soft skills — leadership, humility, collaboration, adaptability and loving to learn and re-learn. ([NYT](http://www.nytimes.com/2014/02/23/opinion/sunday/friedman-how-to-get-a-job-at-google.html?_r=0&referrer))"
+2014/03/01,Business,Vision is really the currency you have as a CEO ([link](http://www.nytimes.com/2014/01/17/business/sabine-heller-of-a-small-world-on-teaching-yourself.html))
+2013/12/01,Business,"The ultimate definition of an entrepreneur is someone who is always thinking he can do things a different, better way. ([linkedin](http://www.linkedin.com/today/post/article/20131219224340-123941699-how-an-entrepreneur-looks-at-the-world))"
+2014/03/01,Business,It's rewarding experience to work for companies at different stages of business cycle. ([link](http://www.quora.com/Startups/Why-do-employees-leave-startups-for-big-brands))
+2014/03/01,Business,World rewards execution rather than idea. (Source:Scott Adam Book)
+2020/04/01,Business,Some good management advice: ([Manger's playbook](https://github.com/ksindi/managers-playbook))
+2019/05/01,Music,6/8 time signature: Counts  **1**  2 3  **4**  5 6. 8th note is 1 beat.
+2019/03/01,Religion,Gnostics believes material world is evil so the gods who created it must also be evil. Salvation comes from knowing the secret knowledge.
+2014/05/01,Opinion,The world is not necessarily run by geniuses; it’s run by people you can count on. ([link](http://www.nytimes.com/2014/05/04/business/ron-kaplan-of-trex-on-making-judgments-instead-of-decisions.html))
+2014/06/01,Opinion,"Narcissists fear death with great dread, and rightly so, for death is the great equalizer that obliterates everything they strive for. ([quora](http://www.quora.com/The-Big-Philosophical-Questions/How-do-you-deal-with-the-fear-of-dying))"
+2017/11/01,Opinion,people who grew up poor has more appetite for risk because they originally had nothing and being wealth is not their identity ([NYT](https://www.nytimes.com/2017/10/20/business/corner-office-chamath-palihapitiya-social-capital.html))
+2014/08/01,Opinion,"We are biased towards people who never give up, who never quit; and that’s something you can’t find on a resume."
+2014/08/01,Opinion,The difference between successful and very successful person that the very successful person says no to almost anything.
+2013/04/01,Opinion,Happiness of life is that you can feel the excitement to live.
+2013/11/01,Opinion,"The most fruitful paradigm shift in human history is first to view the universe as mechanical, then the human body, and finally the human mind.  (Inspired by scott adam's book in which he treat human bodies as moist robots)"
+2013/11/01,Opinion,"Better alternatives is a way to break addiction. That way you don't need a lot of will power to achieve. (from Scott Adam's book, where he mentioned you can eat as much healthier food as you want in order to break the carb addiction)"
+2019/06/01,Misc,[Autopen](https://en.wikipedia.org/wiki/Autopen)  is a device to forge signature for celebrities and politicians

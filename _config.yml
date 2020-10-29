@@ -50,6 +50,7 @@ includes: [_pages]
 header_pages:
   - articles.markdown
   - projects.markdown
+  - TIL.markdown
   - about.markdown
 
 
