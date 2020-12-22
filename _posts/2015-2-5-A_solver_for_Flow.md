@@ -4,7 +4,7 @@ layout: post
 categories: machine_learning
 permalink: articles/flowsolver.html
 excerpt: A solver for popular mobile phone game <i>Flow</i>
-#author: Andrew Wong
+author: Andrew Wong
 ---
 I have been playing this android game [Flow](https://play.google.com/store/apps/details?id=com.bigduckgames.flow&hl=en).  I also ran into a post in a game developer forum that someone asked for a solver to find the solution of a game.  So I thought it would be an interesting problem to solve.
 
