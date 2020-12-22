@@ -11,7 +11,7 @@ permalink: /projects/
     {%- if post.categories contains 'project'  -%}
     <td>
     <a href = "{{ post.url}}">
-    <img src="{{post.icon}}" width="100" height="100">
+    <img src="{{post.icon}}" height="150">
     </a>
     </td>
     
@@ -21,3 +21,4 @@ permalink: /projects/
 {%- endfor -%}   
 
 </table>
+
