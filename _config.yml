@@ -56,6 +56,11 @@ header_pages:
 # Google Analytics
 google_analytics: G-4CC4NFFYDF
 
+# Disqus Comments
+disqus:
+  # Leave shortname blank to disable comments site-wide.
+  # Disable comments for any post by adding `comments: false` to that post's YAML Front Matter.
+  shortname: ctawong
 
 # Exclude from processing.
 # The following items will not be processed, by default.
