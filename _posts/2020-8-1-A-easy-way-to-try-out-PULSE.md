@@ -12,7 +12,7 @@ author: Andrew Wong
 
 PULSE (Photo Upsampling via Latent Space Exploration) is a new [algorithm](https://arxiv.org/abs/2003.03808) published in 2020 that generates a high resolution facial image from a low resolution one. The main idea is to encode a low resolution image to a latent variable with [GAN](https://en.wikipedia.org/wiki/Generative_adversarial_network), change the latent variable a little bit, and generate a new but highly similar image.
 
-To make it easy for anyone to try out PULSE, I wrote a [COLAB notebook](https://colab.research.google.com/github/ctawong/PULSE_from_image_url/blob/master/PULSE_URL.ipynb) that takes an image URL (such as those obtained from Google image search), perform downsampling, and then upsampling with PULSE. 
+To make it easier for anyone to try out PULSE, I wrote a [COLAB notebook](https://colab.research.google.com/github/ctawong/PULSE_from_image_url/blob/master/PULSE_URL.ipynb) that takes an image URL (such as those obtained from Google image search), performs downsampling, and then upsampling with PULSE. 
 
 Instruction to run
 
