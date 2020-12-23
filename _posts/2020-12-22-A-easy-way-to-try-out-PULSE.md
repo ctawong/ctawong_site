@@ -41,4 +41,4 @@ Pretty good! You may think. Things go a bit haywire with some images...
 
 ![](/assets/uploads/pulse_senior2.png)
 
-As you can see, the generator is biased towards white young-looking adults. In fact there have been a lot of discussion around bias implicit in machine learning models. To sum up, it's all about the bias in training data. The PULSE model was trained with the a [dataset of Flickr images](https://github.com/NVlabs/ffhq-dataset) and inherited all its bias. The bias issue can likely be resolved by carefully selecting a dataset with diverse age, ethnicity and gender.
+As you can see, the generator is biased towards white young-looking adults. In fact there have been a lot of discussion around bias implicit in machine learning models. To sum up, it's all about the training data. The models simply fill in the gap based on what they saw from the training data. The PULSE model was trained with the a [dataset of Flickr images](https://github.com/NVlabs/ffhq-dataset) and inherited all its bias. The bias issue can likely be resolved by carefully selecting a dataset with diverse age, ethnicity and gender.
