@@ -11,7 +11,7 @@ permalink: /articles
   {%- if site.posts.size > 0 -%}
     <ul class="post-list">
       {%- for post in site.posts -%}
-            {%- unless post.categories contains 'project'  -%}
+
       
       <li>
 	        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
@@ -24,7 +24,7 @@ permalink: /articles
      	   </h5>
         	  {{ post.excerpt }}
     	  </li>
-		{%- endunless -%}
+
       {%- endfor -%}
     </ul>
 

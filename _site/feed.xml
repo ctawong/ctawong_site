@@ -1,4 +1,215 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-12-23T15:33:53-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Biased Random Walk</title><subtitle>machine learning, physics, biotechnology</subtitle><entry><title type="html">An easy way to try out the PULSE algorithm</title><link href="http://localhost:4000/articles/pulse.html" rel="alternate" type="text/html" title="An easy way to try out the PULSE algorithm" /><published>2020-12-22T00:00:00-05:00</published><updated>2020-12-22T00:00:00-05:00</updated><id>http://localhost:4000/articles/A-easy-way-to-try-out-PULSE</id><content type="html" xml:base="http://localhost:4000/articles/pulse.html">&lt;p&gt;&lt;a href=&quot;https://colab.research.google.com/github/ctawong/PULSE_from_image_url/blob/master/PULSE_URL.ipynb&quot;&gt;&lt;img src=&quot;https://camo.githubusercontent.com/52feade06f2fecbf006889a904d221e6a730c194/68747470733a2f2f636f6c61622e72657365617263682e676f6f676c652e636f6d2f6173736574732f636f6c61622d62616467652e737667&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-12-26T04:54:46-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Biased Random Walk</title><subtitle>machine learning, physics, biotechnology</subtitle><entry><title type="html">Roblox bot to collect coins!</title><link href="http://localhost:4000/articles/roblox_bot.html" rel="alternate" type="text/html" title="Roblox bot to collect coins!" /><published>2020-12-26T00:00:00-05:00</published><updated>2020-12-26T00:00:00-05:00</updated><id>http://localhost:4000/articles/Roblox-Murder-Mystery-bot-with-Yolo-detector</id><content type="html" xml:base="http://localhost:4000/articles/roblox_bot.html">&lt;p&gt;&lt;img src=&quot;/assets/uploads/mm2/789e0ba5b15c4407897e7ee27a2b6546.gif&quot; alt=&quot;coin_collect2.gif&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Table of Contents&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#setting-up-the-hooks&quot; id=&quot;markdown-toc-setting-up-the-hooks&quot;&gt;Setting up the hooks&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#first-attempt-keypoint-matching&quot; id=&quot;markdown-toc-first-attempt-keypoint-matching&quot;&gt;First Attempt: Keypoint matching&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#second-attempt-templating-matching&quot; id=&quot;markdown-toc-second-attempt-templating-matching&quot;&gt;Second Attempt: Templating matching&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#coin-detection&quot; id=&quot;markdown-toc-coin-detection&quot;&gt;Coin detection&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#policy-actions&quot; id=&quot;markdown-toc-policy-actions&quot;&gt;Policy actions&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#codes&quot; id=&quot;markdown-toc-codes&quot;&gt;Codes&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#third-attempt-yolo-deep-neural-network-detector&quot; id=&quot;markdown-toc-third-attempt-yolo-deep-neural-network-detector&quot;&gt;Third attempt: Yolo Deep neural network detector&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#coin-detection-1&quot; id=&quot;markdown-toc-coin-detection-1&quot;&gt;Coin detection&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#detecting-other-players&quot; id=&quot;markdown-toc-detecting-other-players&quot;&gt;Detecting other players&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#conclusing-thoughts&quot; id=&quot;markdown-toc-conclusing-thoughts&quot;&gt;Conclusing thoughts&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#appendix-train-your-own-bot&quot; id=&quot;markdown-toc-appendix-train-your-own-bot&quot;&gt;Appendix: Train your own bot&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#step-1-make-a-new-bot&quot; id=&quot;markdown-toc-step-1-make-a-new-bot&quot;&gt;Step 1: Make a new bot&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#step-2-collect-training-images&quot; id=&quot;markdown-toc-step-2-collect-training-images&quot;&gt;Step 2: Collect training images&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#step-3-label-images&quot; id=&quot;markdown-toc-step-3-label-images&quot;&gt;Step 3: Label images&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#step-4-train-the-yolo-model&quot; id=&quot;markdown-toc-step-4-train-the-yolo-model&quot;&gt;Step 4: Train the Yolo model&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#step-5-modify-your-policy&quot; id=&quot;markdown-toc-step-5-modify-your-policy&quot;&gt;Step 5: Modify your policy&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#step-6-run-your-bot&quot; id=&quot;markdown-toc-step-6-run-your-bot&quot;&gt;Step 6: Run your bot!&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/ctawong/RobloxBot&quot;&gt;Github link&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.roblox.com&quot;&gt;Roblox&lt;/a&gt; is a multi-player online game plateform that hosts over 40 millions games made by users. &lt;a href=&quot;https://www.roblox.com/games/142823291/Murder-Mystery-2&quot;&gt;Murder Mystery 2&lt;/a&gt; is one of its most popular games.&lt;/p&gt;
+
+&lt;p&gt;My son is into this game and asked me if I could write a bot to automatically collect coins. I thought it was pretty cool idea, and is pretty doable given the recent advance in machine learning.&lt;/p&gt;
+
+&lt;h2 id=&quot;setting-up-the-hooks&quot;&gt;Setting up the hooks&lt;/h2&gt;
+&lt;p&gt;The first task is to capture the Roblox window as streaming images. That was done by bringing the window to foreground and capturing a partial screenshot using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pywin32&lt;/code&gt; package.  The image streaming was implemented as a background processs so that it won’t be affected by the timing of image processing and policy action.&lt;/p&gt;
+
+&lt;p&gt;The next step is to find a way to control the Roblox character. For some reasons, many keyboard control packages didn’t work with Roblox. The only package I found worked was &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AutoHotkey&lt;/code&gt; for python (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ahk&lt;/code&gt;). &lt;sup id=&quot;fnref:keyboard&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:keyboard&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;An interesting naunce is DPI scaling in Windows can cause the captured window area incorrect. The artifact can be resolved by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SetProcessDPIAware()&lt;/code&gt; function in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ctype&lt;/code&gt; package. &lt;sup id=&quot;fnref:dpiscale&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:dpiscale&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;first-attempt-keypoint-matching&quot;&gt;First Attempt: Keypoint matching&lt;/h2&gt;
+
+&lt;p&gt;I know neural network is all the rage. But as a rule, I always start with something simplier to see if that works. After some research, I decided to use &lt;a href=&quot;https://en.wikipedia.org/wiki/Scale-invariant_feature_transform&quot;&gt;SIFT&lt;/a&gt; algorithm to find and match keypoints based on a templates image of gold coin. The algorithm is robust against scale and perspective change. It should serve as a good starting point.&lt;/p&gt;
+
+&lt;p&gt;I found the keypoints of the coin template and game play, followed by filtering and matching the keypoints between the two.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/uploads/mm2//f8981b60bc43489cacaa5efcff4b1a56.png&quot; alt=&quot;e21aba6fea7742913c7840971ae8196d.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;However, there were too many false positives and negatives no matter how I tune the parameters. The diverse perspective and lightning change in the scenes seemed to mess up the detection.&lt;/p&gt;
+
+&lt;h2 id=&quot;second-attempt-templating-matching&quot;&gt;Second Attempt: Templating matching&lt;/h2&gt;
+
+&lt;h3 id=&quot;coin-detection&quot;&gt;Coin detection&lt;/h3&gt;
+&lt;p&gt;To deal with the scale and perspective change, I detected to try something even simpler: &lt;a href=&quot;https://en.wikipedia.org/wiki/Template_matching&quot;&gt;templating matching&lt;/a&gt;. Basically the algorithm scans a coin template across the image to see if there are any matches. However, there are few issues:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;The coins are spinning, so instead of one template, I need multiples to capture different views during the spin. This is dealt with using a series of templates.
+&lt;img src=&quot;/assets/uploads/mm2//9f380b2c0b514f7bb75f4c14bdb43854.png&quot; alt=&quot;59c7f9bf58cfeb2a4edfdf699549ef68.png&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Since this is a 3D game, perspectives of the coins can change depending on the viewing angle. I ended up using &lt;a href=&quot;https://www.pyimagesearch.com/2015/01/26/multi-scale-template-matching-using-python-opencv/&quot;&gt;multi-scale template matching&lt;/a&gt;.  It does slow down the detection significantly. I compensated by reducing the image size.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The scene are simply too rich with variety of background and players with different costumes. It’s easy to have false positives. I decided to do some feature engineering and apply a yellow filter &lt;sup id=&quot;fnref:yellow-filter&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:yellow-filter&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; before templating matching, so that I only need to deal with anything that looks yellow.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The resulting detector kind of works. It detects ~50% of coins and can have many false positives, depending on how yellow the scenes are…&lt;/p&gt;
+
+&lt;h3 id=&quot;policy-actions&quot;&gt;Policy actions&lt;/h3&gt;
+&lt;p&gt;With the coin detector kind of working, it’s time to tell the Roblox character what to do with the information. Again, the state-of-the-art technique is reinforcement learning methods, such as &lt;a href=&quot;https://arxiv.org/abs/1602.01783&quot;&gt;A3C&lt;/a&gt;. But I always start with simpler methods. Perhaps this can serve as a baseline performance.&lt;/p&gt;
+
+&lt;p&gt;I simply divide the screen into 9 regions and perform the movement like below if a coin falls in one region.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/uploads/mm2//81f97341e295403a9c8290edc7f620db.png&quot; alt=&quot;907cd00f6aec180b38f1f98349354f5b.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When there are no coins, the character would perform random actions of jump, movement and turns.  Turns are important as it helps the bot to escape from trapping when facing a wall.&lt;/p&gt;
+
+&lt;p&gt;I found adding random jumps to all movements is important. Sometimes the coin are not at the same level of the character and it needs a jump to get it. Other times it helps the character to get unstuck.&lt;/p&gt;
+
+&lt;h3 id=&quot;codes&quot;&gt;Codes&lt;/h3&gt;
+&lt;p&gt;The bot is in the &lt;a href=&quot;https://github.com/ctawong/RobloxBot&quot;&gt;RoboxBot&lt;/a&gt; repository, in  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bots/mm2_tm_coin_collector/&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;h2 id=&quot;third-attempt-yolo-deep-neural-network-detector&quot;&gt;Third attempt: Yolo Deep neural network detector&lt;/h2&gt;
+
+&lt;h3 id=&quot;coin-detection-1&quot;&gt;Coin detection&lt;/h3&gt;
+&lt;p&gt;With all the recent advances of object detection by neural networks, I was curious how much better they are compared to the traditional methods I have tried. After some research, I decided to use &lt;a href=&quot;https://github.com/ctawong/yolov5_mm2&quot;&gt;Yolov5&lt;/a&gt;, a state-of-art and light weight object detector based on deep neurral network. In my application, speed is important as I need to proces video streams of minimum ~10 frames per second. Each ~0.1 second budget not only includes object detection, but also image capture and policy action.&lt;/p&gt;
+
+&lt;p&gt;The first task is to collect training images. This can be done by saving the video stream from the game.&lt;/p&gt;
+
+&lt;p&gt;The second task is to label each image to tell where the coins are. I used &lt;a href=&quot;https://github.com/ctawong/OpenLabeling&quot;&gt;OpenLabeling&lt;/a&gt;, a lightweight Python based image labeling tool, and end up making some modification including speeding up and adding functionality to meet my specific need. (I was intimated by the mainstream tools with hundreds of features like web-based collaborative labeling that I don’t need.)&lt;/p&gt;
+
+&lt;p&gt;Finally, the images and labels are fed into the Yolo model for traing. The detailed instruction of training a Yolo detector can be found &lt;a href=&quot;#appendix-train-your-own-bot&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I was pleasantly surprised that the detector works so well. It’s fast and accurate. With 200 epoches of training on ~1000 images, it captures &amp;gt;90% of the coins with very few false positives. The performance is about 100 - 150 coins per hour.&lt;/p&gt;
+
+&lt;p&gt;Here are some clips from the trained bot.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/uploads/mm2/coin_collect1.gif&quot; alt=&quot;coin_collect1.gif&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/uploads/mm2/789e0ba5b15c4407897e7ee27a2b6546.gif&quot; alt=&quot;coin_collect2.gif&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The bot is in the &lt;a href=&quot;https://github.com/ctawong/RobloxBot&quot;&gt;RoboxBot&lt;/a&gt; repository, in  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bots/mm2_yolo_coin_collector/&lt;/code&gt; directory. It can be run by&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;bots/mm2_yolo_coin_collector/
+python main.py &lt;span class=&quot;nt&quot;&gt;--weights&lt;/span&gt; weights/yolo_coin_m_v3.pt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;detecting-other-players&quot;&gt;Detecting other players&lt;/h3&gt;
+&lt;p&gt;In Murder Mystery 2, you are either a murder, sheriff or innocent. In  majority of time, it is beneficial to avoid getting killed if your goal is to collect coins. So I trained a Yolo detector to detect both coins and people. The policy is if I see other players, there is a certain probability I would run away to avoid getting killed.  The change improves performance to 180-250 coins/hour.&lt;/p&gt;
+
+&lt;p&gt;Here are some clips from the trained bot.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/uploads/mm2//97d67510403641f0b3fc263edf603ed8.gif&quot; alt=&quot;coin_collect_person2.gif&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The bot with player detection can be run by&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;bots/mm2_yolo_coin_collector/
+python main.py &lt;span class=&quot;nt&quot;&gt;--weights&lt;/span&gt; weights/yolo_coin_person_m_v2.pt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;conclusing-thoughts&quot;&gt;Conclusing thoughts&lt;/h2&gt;
+&lt;p&gt;In this work, I see several pros and cons of using deep neural networks&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;You have to have the right hardware such as a decent GPU and CPU to use neural network, whereas older methods are almost always CPU based.&lt;/li&gt;
+  &lt;li&gt;In traditional methods, you spend most time in exploratory feature engineering, whereas in neural network you spend most time in data collection and labeling.&lt;/li&gt;
+  &lt;li&gt;The advantage of neural network are:
+    &lt;ul&gt;
+      &lt;li&gt;The return is certain: the more data and label, the better the performance. Whereas the time in feature engineering can be wasted if a particular approach doesn’t work out.&lt;/li&gt;
+      &lt;li&gt;The labor intensive part is low skill. I asked my kids to label the images.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It would be fun to see the performance of replacing the feature-based policy with reinforcement learning. One concern is the scenes are quite complex. I am not sure if I have the right hardware to train a big enough model. But it would be a good test of how practical reinforcement learning is&lt;/p&gt;
+
+&lt;h2 id=&quot;appendix-train-your-own-bot&quot;&gt;Appendix: Train your own bot&lt;/h2&gt;
+&lt;p&gt;The following instructions are for making and training a new Yolo-based bot for a new Roblox game. In the example below, I am making a new bot called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mm2_yolo_bot2&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;step-1-make-a-new-bot&quot;&gt;Step 1: Make a new bot&lt;/h3&gt;
+&lt;p&gt;Make a new bot in your local &lt;a href=&quot;https://github.com/ctawong/RobloxBot&quot;&gt;RobloxBot&lt;/a&gt; repository.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;bots
+&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; mm2_yolo_coin_collector mm2_yolo_bot2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;step-2-collect-training-images&quot;&gt;Step 2: Collect training images&lt;/h3&gt;
+&lt;p&gt;Start a Roblox game.&lt;/p&gt;
+
+&lt;p&gt;Start the new bot and save the video stream:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;bots/mm2_yolo_bot2
+python main.py &lt;span class=&quot;nt&quot;&gt;--save-stream&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The saved images are in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bots/mm2_yolo_bot2/images&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-3-label-images&quot;&gt;Step 3: Label images&lt;/h3&gt;
+&lt;p&gt;Label images with &lt;a href=&quot;https://github.com/ctawong/OpenLabeling&quot;&gt;OpenLabeling&lt;/a&gt; tool.
+Clone the repository:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  git clone https://github.com/ctawong/OpenLabeling.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Put training images in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main/input&lt;/code&gt; folder.
+Edit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main/class_list.txt&lt;/code&gt; to add or remove classes.
+Run the codes and label the objects&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  cd main
+  python main.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Controls:
+	- &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt;: previous image
+	- &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;d&lt;/code&gt;: next image
+	- &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;w&lt;/code&gt;: next label
+	- &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;s&lt;/code&gt;: previous label
+	- &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;x&lt;/code&gt;: delete image
+The output Yolo annotation files will be in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;output&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-4-train-the-yolo-model&quot;&gt;Step 4: Train the Yolo model&lt;/h3&gt;
+&lt;p&gt;Clone the repository &lt;a href=&quot;https://github.com/ctawong/yolov5_mm2&quot;&gt;Yolov5 for Murder Mystery 2&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The configuration file is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data/mm2.yaml&lt;/code&gt;. Modify the number of class and class names according to what your traning data.&lt;/p&gt;
+
+&lt;p&gt;Put both the training images and Yolo darknet annotation files in the directory &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mm2_images/train/&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Train model by&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python train.py --img 640 --batch 8 --epochs 200 --data mm2.yaml --weights yolov5m.pt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yolov5m.pt&lt;/code&gt; is the medium-sized model. Smaller and larger models are also available.&lt;/p&gt;
+
+&lt;p&gt;The trained model can be found under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;runs/train/&lt;/code&gt;. Copy the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;best.pt&lt;/code&gt; file to your bot directory under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;weights/&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;step-5-modify-your-policy&quot;&gt;Step 5: Modify your policy&lt;/h3&gt;
+&lt;p&gt;All policy actions are implemented in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;policy.py&lt;/code&gt; in your bot directory. Add/remove classes and modify the actions accordingly.&lt;/p&gt;
+
+&lt;p&gt;A more detailed instruction to train custom data can be found &lt;a href=&quot;https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-6-run-your-bot&quot;&gt;Step 6: Run your bot!&lt;/h3&gt;
+&lt;p&gt;Start the Roblox game. Run your bot by&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;bots/mm2_yolo_bot2
+python main.py &lt;span class=&quot;nt&quot;&gt;--weights&lt;/span&gt; weights/best.pt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:keyboard&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Failed packages includes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;keyboard&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyautogui&lt;/code&gt;. &lt;a href=&quot;#fnref:keyboard&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:dpiscale&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;from ctypes import windll; user32 = windll.user32; user32.SetProcessDPIAware()&lt;/code&gt; &lt;a href=&quot;#fnref:dpiscale&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:yellow-filter&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Yellow filter is accomplished by converting the image to HSV scale, followed by a mask to allow values between (15, 120, 120) and (36, 255, 255). &lt;a href=&quot;#fnref:yellow-filter&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Andrew Wong</name></author><category term="machine_learning," /><category term="project" /><summary type="html">Yolo-based coin detector for Roblox Murder Mystery 2. Extendable to other games.</summary></entry><entry><title type="html">An easy way to try out the PULSE algorithm</title><link href="http://localhost:4000/articles/pulse.html" rel="alternate" type="text/html" title="An easy way to try out the PULSE algorithm" /><published>2020-12-22T00:00:00-05:00</published><updated>2020-12-22T00:00:00-05:00</updated><id>http://localhost:4000/articles/A-easy-way-to-try-out-PULSE</id><content type="html" xml:base="http://localhost:4000/articles/pulse.html">&lt;p&gt;&lt;a href=&quot;https://colab.research.google.com/github/ctawong/PULSE_from_image_url/blob/master/PULSE_URL.ipynb&quot;&gt;&lt;img src=&quot;https://camo.githubusercontent.com/52feade06f2fecbf006889a904d221e6a730c194/68747470733a2f2f636f6c61622e72657365617263682e676f6f676c652e636f6d2f6173736574732f636f6c61622d62616467652e737667&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/ctawong/PULSE_from_image_url&quot;&gt;Github link&lt;/a&gt;&lt;/p&gt;
 
@@ -35,10 +246,7 @@
 
 &lt;p&gt;&lt;img src=&quot;/assets/uploads/pulse_senior2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;As you can see, the generator is biased towards white young-looking adults. In fact there have been a lot of discussion around bias implicit in machine learning models. To sum up, it’s all about the training data. The models simply fill in the gap based on what they saw from the training data. The PULSE model was trained with the a &lt;a href=&quot;https://github.com/NVlabs/ffhq-dataset&quot;&gt;dataset of Flickr images&lt;/a&gt; and inherited all its bias. The bias issue can likely be resolved by carefully selecting a dataset with diverse age, ethnicity and gender.&lt;/p&gt;</content><author><name>Andrew Wong</name></author><category term="machine_learning" /><summary type="html">PULSE is an algorithm for creating high resolution facial images</summary></entry><entry><title type="html">PULSE from URL image</title><link href="http://localhost:4000/projects/PULSE" rel="alternate" type="text/html" title="PULSE from URL image" /><published>2020-12-22T00:00:00-05:00</published><updated>2020-12-22T00:00:00-05:00</updated><id>http://localhost:4000/projects/project_PULSE-from-URL</id><content type="html" xml:base="http://localhost:4000/projects/PULSE">&lt;p&gt;&lt;img src=&quot;/assets/pulse.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Try it out using this notebook &lt;a href=&quot;https://colab.research.google.com/github/ctawong/PULSE_from_image_url/blob/master/PULSE_URL.ipynb&quot; target=&quot;_blank&quot;&gt;Google Colab&lt;/a&gt;
-Follow the instructions in &lt;a href=&quot;/articles/pulse.html&quot;&gt;this post&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="project" /><summary type="html">Try out PULSE algorithm using an image URL</summary></entry><entry><title type="html">Deep dive into variational auto-encoder (Part 2)</title><link href="http://localhost:4000/articles/vae_part2.html" rel="alternate" type="text/html" title="Deep dive into variational auto-encoder (Part 2)" /><published>2020-04-08T00:00:00-04:00</published><updated>2020-04-08T00:00:00-04:00</updated><id>http://localhost:4000/articles/deep-dive-into-variational-auto-encoder-part-2</id><content type="html" xml:base="http://localhost:4000/articles/vae_part2.html">&lt;p&gt;An in-depth notes on VAE. Part 2 covers pytorch implementation.&lt;/p&gt;
+&lt;p&gt;As you can see, the generator is biased towards white young-looking adults. In fact there have been a lot of discussion around bias implicit in machine learning models. To sum up, it’s all about the training data. The models simply fill in the gap based on what they saw from the training data. The PULSE model was trained with the a &lt;a href=&quot;https://github.com/NVlabs/ffhq-dataset&quot;&gt;dataset of Flickr images&lt;/a&gt; and inherited all its bias. The bias issue can likely be resolved by carefully selecting a dataset with diverse age, ethnicity and gender.&lt;/p&gt;</content><author><name>Andrew Wong</name></author><category term="machine_learning," /><category term="project" /><summary type="html">PULSE is an algorithm for creating high resolution facial images</summary></entry><entry><title type="html">Deep dive into variational auto-encoder (Part 2)</title><link href="http://localhost:4000/articles/vae_part2.html" rel="alternate" type="text/html" title="Deep dive into variational auto-encoder (Part 2)" /><published>2020-04-08T00:00:00-04:00</published><updated>2020-04-08T00:00:00-04:00</updated><id>http://localhost:4000/articles/deep-dive-into-variational-auto-encoder-part-2</id><content type="html" xml:base="http://localhost:4000/articles/vae_part2.html">&lt;p&gt;An in-depth notes on VAE. Part 2 covers pytorch implementation.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/articles/vae_part1.html&quot;&gt;Part 1 of this article&lt;/a&gt;.&lt;/p&gt;
 

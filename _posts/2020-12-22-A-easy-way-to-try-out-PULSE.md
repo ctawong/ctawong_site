@@ -1,9 +1,10 @@
 ---
 layout: post
 title: An easy way to try out the PULSE algorithm
-categories: machine_learning
+categories: machine_learning, project
 permalink: articles/pulse.html
 excerpt: PULSE is an algorithm for creating high resolution facial images
+icon: /assets/pulse.png
 author: Andrew Wong
 comments: true
 ---
