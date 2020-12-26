@@ -43,16 +43,16 @@ I found the keypoints of the coin template and game play, followed by filtering 
 However, there were too many false positives and negatives no matter how I tune the parameters. The diverse perspective and lightning change in the scenes seemed to mess up the detection.
 
 
-## Second Attempt: Templating matching
+## Second Attempt: Template matching
 
 ### Coin detection
-To deal with the scale and perspective change, I detected to try something even simpler: [templating matching](https://en.wikipedia.org/wiki/Template_matching). Basically the algorithm scans a coin template across the image to see if there are any matches. However, there are few issues:
+To deal with the scale and perspective change, I detected to try something even simpler: [template matching](https://en.wikipedia.org/wiki/Template_matching). Basically the algorithm scans a coin template across the image to see if there are any matches. However, there are few issues:
 1. The coins are spinning, so instead of one template, I need multiples to capture different views during the spin. This is dealt with using a series of templates.
 ![59c7f9bf58cfeb2a4edfdf699549ef68.png](/assets/uploads/mm2//9f380b2c0b514f7bb75f4c14bdb43854.png)
 
 2. Since this is a 3D game, perspectives of the coins can change depending on the viewing angle. I ended up using [multi-scale template matching](https://www.pyimagesearch.com/2015/01/26/multi-scale-template-matching-using-python-opencv/).  It does slow down the detection significantly. I compensated by reducing the image size.
 
-3. The scene are simply too rich with variety of background and players with different costumes. It's easy to have false positives. I decided to do some feature engineering and apply a yellow filter [^yellow-filter] before templating matching, so that I only need to deal with anything that looks yellow.
+3. The scene are simply too rich with variety of background and players with different costumes. It's easy to have false positives. I decided to do some feature engineering and apply a yellow filter [^yellow-filter] before template matching, so that I only need to deal with anything that looks yellow.
 
 [^yellow-filter]: Yellow filter is accomplished by converting the image to HSV scale, followed by a mask to allow values between (15, 120, 120) and (36, 255, 255).
 

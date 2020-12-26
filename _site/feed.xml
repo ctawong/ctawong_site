@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-12-26T05:06:51-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Biased Random Walk</title><subtitle>machine learning, physics, biotechnology</subtitle><entry><title type="html">Roblox bot to collect coins!</title><link href="http://localhost:4000/articles/roblox_bot.html" rel="alternate" type="text/html" title="Roblox bot to collect coins!" /><published>2020-12-26T00:00:00-05:00</published><updated>2020-12-26T00:00:00-05:00</updated><id>http://localhost:4000/articles/Roblox-Murder-Mystery-bot-with-Yolo-detector</id><content type="html" xml:base="http://localhost:4000/articles/roblox_bot.html">&lt;p&gt;&lt;img src=&quot;/assets/uploads/mm2/789e0ba5b15c4407897e7ee27a2b6546.gif&quot; alt=&quot;coin_collect2.gif&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-12-26T15:02:18-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Biased Random Walk</title><subtitle>machine learning, physics, biotechnology</subtitle><entry><title type="html">Roblox bot to collect coins!</title><link href="http://localhost:4000/articles/roblox_bot.html" rel="alternate" type="text/html" title="Roblox bot to collect coins!" /><published>2020-12-26T00:00:00-05:00</published><updated>2020-12-26T00:00:00-05:00</updated><id>http://localhost:4000/articles/Roblox-Murder-Mystery-bot-with-Yolo-detector</id><content type="html" xml:base="http://localhost:4000/articles/roblox_bot.html">&lt;p&gt;&lt;img src=&quot;/assets/uploads/mm2/789e0ba5b15c4407897e7ee27a2b6546.gif&quot; alt=&quot;coin_collect2.gif&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Table of Contents&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#setting-up-the-hooks&quot; id=&quot;markdown-toc-setting-up-the-hooks&quot;&gt;Setting up the hooks&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#first-attempt-keypoint-matching&quot; id=&quot;markdown-toc-first-attempt-keypoint-matching&quot;&gt;First Attempt: Keypoint matching&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#second-attempt-templating-matching&quot; id=&quot;markdown-toc-second-attempt-templating-matching&quot;&gt;Second Attempt: Templating matching&lt;/a&gt;    &lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#second-attempt-template-matching&quot; id=&quot;markdown-toc-second-attempt-template-matching&quot;&gt;Second Attempt: Template matching&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#coin-detection&quot; id=&quot;markdown-toc-coin-detection&quot;&gt;Coin detection&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#policy-actions&quot; id=&quot;markdown-toc-policy-actions&quot;&gt;Policy actions&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#codes&quot; id=&quot;markdown-toc-codes&quot;&gt;Codes&lt;/a&gt;&lt;/li&gt;
@@ -50,10 +50,10 @@
 
 &lt;p&gt;However, there were too many false positives and negatives no matter how I tune the parameters. The diverse perspective and lightning change in the scenes seemed to mess up the detection.&lt;/p&gt;
 
-&lt;h2 id=&quot;second-attempt-templating-matching&quot;&gt;Second Attempt: Templating matching&lt;/h2&gt;
+&lt;h2 id=&quot;second-attempt-template-matching&quot;&gt;Second Attempt: Template matching&lt;/h2&gt;
 
 &lt;h3 id=&quot;coin-detection&quot;&gt;Coin detection&lt;/h3&gt;
-&lt;p&gt;To deal with the scale and perspective change, I detected to try something even simpler: &lt;a href=&quot;https://en.wikipedia.org/wiki/Template_matching&quot;&gt;templating matching&lt;/a&gt;. Basically the algorithm scans a coin template across the image to see if there are any matches. However, there are few issues:&lt;/p&gt;
+&lt;p&gt;To deal with the scale and perspective change, I detected to try something even simpler: &lt;a href=&quot;https://en.wikipedia.org/wiki/Template_matching&quot;&gt;template matching&lt;/a&gt;. Basically the algorithm scans a coin template across the image to see if there are any matches. However, there are few issues:&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;
     &lt;p&gt;The coins are spinning, so instead of one template, I need multiples to capture different views during the spin. This is dealt with using a series of templates.
@@ -63,7 +63,7 @@
     &lt;p&gt;Since this is a 3D game, perspectives of the coins can change depending on the viewing angle. I ended up using &lt;a href=&quot;https://www.pyimagesearch.com/2015/01/26/multi-scale-template-matching-using-python-opencv/&quot;&gt;multi-scale template matching&lt;/a&gt;.  It does slow down the detection significantly. I compensated by reducing the image size.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;The scene are simply too rich with variety of background and players with different costumes. It’s easy to have false positives. I decided to do some feature engineering and apply a yellow filter &lt;sup id=&quot;fnref:yellow-filter&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:yellow-filter&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; before templating matching, so that I only need to deal with anything that looks yellow.&lt;/p&gt;
+    &lt;p&gt;The scene are simply too rich with variety of background and players with different costumes. It’s easy to have false positives. I decided to do some feature engineering and apply a yellow filter &lt;sup id=&quot;fnref:yellow-filter&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:yellow-filter&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; before template matching, so that I only need to deal with anything that looks yellow.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 

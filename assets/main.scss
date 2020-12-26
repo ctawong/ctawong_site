@@ -1,0 +1,15 @@
+---
+---
+
+@import "minima";
+
+.post-content {
+  h1 {
+    @include relative-font-size(2.5);
+
+    @include media-query($on-laptop) {
+      @include relative-font-size(2.25);
+    }
+    border-bottom: 1px solid gray;
+  }
+}
