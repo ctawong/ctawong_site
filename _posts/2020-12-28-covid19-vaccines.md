@@ -60,6 +60,8 @@ For the rest of people who do not show sympton, they could be
 
 So from this data, we cannot say how severe Covid-19 is.
 
+From the calculation above, the efficacy can be interpreted as percentage of infection would have prevented if people are vaccinated. Note that it does not include the effect of herd immunity, where enough population is immune causing infection not be effectively transmitted.
+
 # How long does it last
 
 Moderna's Avian flu mRNA was shown to be effective [up to 6 months](https://www.sciencedirect.com/science/article/pii/S0264410X19305626) based on antibody persistence test. It is unclear if the test correlates perfectly with immune response to the virus, but is a good data point. From published data, Moderna's COVID-19 vaccine showed good antibody persistence up to [3 months](https://www.nejm.org/doi/full/10.1056/NEJMc2032195?query=RP), though the persistence dropped off faster for older people. To sum up, we have data to say it is the vaccine is at least good for 3 months, and is likely less effective in older people.
