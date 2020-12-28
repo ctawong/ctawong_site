@@ -8,7 +8,9 @@ author: Andrew Wong
 comments: true
 ---
 
-Table of Contents
+My notes on COVID-19 vaccines currently approved by FDA for emergence use.
+
+**Table of Contents**
 * TOC
 {:toc}
 
@@ -27,7 +29,7 @@ Table of Contents
 | Funding | Private | Public |
 | Clincal trail ID | [NCT04368728](https://clinicaltrials.gov/ct2/show/NCT04368728) |  [NCT04470427](https://clinicaltrials.gov/ct2/show/NCT04470427)   |
 | Safety |  Look for severe allgeric reaction to ingradient. [CDC Guideline](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/underlying-conditions.html)   | Look for severe allgeric reaction to ingradient. [CDC Guideline](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/underlying-conditions.html). [Severe allgeric reaction](https://thehill.com/homenews/state-watch/531710-boston-doctor-with-history-of-allergies-has-severe-reaction-to-moderna) in a patient with existing allergy condition |
-| Efficacy | 95% | 95% |
+| Efficacy | 95% @ 3 months | 95% @ 3 months |
 | How long does it last| At least 3 months | At least 3 months |
 
 Additional Source:  
@@ -36,7 +38,7 @@ Additional Source:
 
 [^m1]: [PNR News](https://www.npr.org/sections/health-shots/2020/11/17/935563377/why-does-pfizers-covid-19-vaccine-need-to-be-kept-colder-than-antarctic). Usage of modified nucleotide not comfirmed by Moderna.
 
-The two vaccines are remarkably similar. Both are mRNA vaccines instead of traditional vaccines that are made from dead viruses. Both use lipid nanoparticle technology to stabilize the mRNA. For the difference in storage condition (-20C for Moderna vs -80C for BioNTech), it is unclear if Moderna has better lipid nanoparticle technology, or simply becasue BioNTech has not completed the temperature stability test to claim higher temperature.
+The two vaccines are remarkably similar. Both are mRNA vaccines instead of traditional vaccines that are made from dead viruses. Both target the same spike protein. And unsurprisingly, the two have similar effectiveness. Both use lipid nanoparticle technology to stabilize the mRNA. For the difference in storage condition (-20C for Moderna vs -80C for BioNTech), it is unclear if Moderna has better lipid nanoparticle technology, or simply becasue BioNTech has not completed the temperature stability test to claim higher temperature.
 
 # Efficacy
 
