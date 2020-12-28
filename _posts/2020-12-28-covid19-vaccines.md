@@ -54,15 +54,15 @@ Efficacy rate calcuation (Asumming equal split between vaccine and placebo group
 - Unvaccined attack rate (pople who took the placebo and got sick) = 90/15,000
 - Efficacy = (90-5)/90=94.4%
 
-For the rest of people who do not show sympton, it could be
-- Uninfected
-- Infected but did not show symptom
+For the rest of people who do not show sympton, they could be
+- uninfected
+- infected but did not show symptom
 
 So from this data, we cannot say how severe Covid-19 is.
 
 # How long does it last
 
-Moderna's Avian flu mRNA was shown to be effective [up to 6 months](https://www.sciencedirect.com/science/article/pii/S0264410X19305626) based on antibody persistence test. It is unclear if the test correlates perfectly with immune response to the virus, but is a good data point. Pulblished data Moderna's Covd-19 vaccine showed good antibody persistence up to [3 months](https://www.nejm.org/doi/full/10.1056/NEJMc2032195?query=RP), though the persistence dropped off faster for older people. To sum up, we have data to say it is the vaccine is at least good for 3 months, and is likely less effective in older people.
+Moderna's Avian flu mRNA was shown to be effective [up to 6 months](https://www.sciencedirect.com/science/article/pii/S0264410X19305626) based on antibody persistence test. It is unclear if the test correlates perfectly with immune response to the virus, but is a good data point. From published data, Moderna's COVID-19 vaccine showed good antibody persistence up to [3 months](https://www.nejm.org/doi/full/10.1056/NEJMc2032195?query=RP), though the persistence dropped off faster for older people. To sum up, we have data to say it is the vaccine is at least good for 3 months, and is likely less effective in older people.
 
 # Basic concepts
 Below are some basic concepts to understand the biomedical literature.
@@ -80,7 +80,7 @@ Binding antibody binds to virus but does not inactivating it. Neutralizing antib
 ### Pseudovirus luciferase assay
 Pseudovirus luciferase assay is used to measure antibody's ability to inhibit the virus's entry to the cell. Pseudovirus is engineered to express luciferase, a light emitting protein. If pseudovirus successfully enters a cell, we will see the interior of the cell lights up. The intensity is a proxy measure of the amount of virus entered a cell.
 
-$\text{ID}_{50}$: is the fold of dilution of antibody that causes 50% reduction of the light signal in pseudovirus luciferase assay. It is a measure of antibody concentration in linear scale. The higher $\text{ID}_{50}$ value, the higher the antibody concentration.
+$ID_{50}$: is the fold of dilution of antibody that causes 50% reduction of the light signal in pseudovirus luciferase assay. It is a measure of antibody concentration in linear scale. The higher $ID_{50}$ value, the higher the antibody concentration.
 
 **GMT**: [Geometric mean](https://en.wikipedia.org/wiki/Geometric_mean) [titer](#titer) is a measure of average concentration in titer of a group of samples.
 
