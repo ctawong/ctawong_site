@@ -14,6 +14,7 @@ layout: default
           <a class="post-link" href="{{ post.url | relative_url }}">
             {{ post.title | escape }}
           </a>
+                  	  <span class="post-meta">in {{post.categories}} </span>
         </h3>
         {%- if site.show_excerpts -%}
           {{ post.excerpt }}
