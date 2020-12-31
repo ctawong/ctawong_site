@@ -21,6 +21,17 @@ Table of Contents
 
 My son is into this game and asked me if I could write a bot to automatically collect coins. I thought it was pretty cool idea, and is pretty doable given the recent advance in machine learning. 
 
+The final performance of each model is:
+
+|            Methold                       | Coins collected per hour |
+|:----------------------------------------:|:------------------------:|
+|             Template matching            |           40-50          |
+|        Yolov5 - run to coins               |          90-110          |
+| Yolov5 - run to coins and run away from other players |          200-230         |
+
+Not too shabby! A human player can collect about 500 coins per hour so the model still have room for improvement.
+
+
 ## Setting up the hooks
 The first task is to capture the Roblox window as streaming images. That was done by bringing the window to foreground and capturing a partial screenshot using the `pywin32` package.  The image streaming was implemented as a background processs so that it won't be affected by the timing of image processing and policy action.
 
