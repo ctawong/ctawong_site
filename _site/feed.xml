@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-16T22:05:09-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Biased Random Walk</title><subtitle>machine learning, physics, biotechnology</subtitle><entry><title type="html">A Comparison of COVID-19 vaccines</title><link href="http://localhost:4000/articles/covid19-vaccines.html" rel="alternate" type="text/html" title="A Comparison of COVID-19 vaccines" /><published>2020-12-28T00:00:00-05:00</published><updated>2020-12-28T00:00:00-05:00</updated><id>http://localhost:4000/articles/covid19-vaccines</id><content type="html" xml:base="http://localhost:4000/articles/covid19-vaccines.html">&lt;p&gt;My notes on COVID-19 vaccines currently approved by FDA for emergence use.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-16T22:37:20-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Biased Random Walk</title><subtitle>machine learning, physics, biotechnology</subtitle><entry><title type="html">A Comparison of COVID-19 vaccines</title><link href="http://localhost:4000/articles/covid19-vaccines.html" rel="alternate" type="text/html" title="A Comparison of COVID-19 vaccines" /><published>2020-12-28T00:00:00-05:00</published><updated>2020-12-28T00:00:00-05:00</updated><id>http://localhost:4000/articles/covid19-vaccines</id><content type="html" xml:base="http://localhost:4000/articles/covid19-vaccines.html">&lt;p&gt;My notes on COVID-19 vaccines currently approved by FDA for emergence use.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Table of Contents&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
@@ -942,7 +942,7 @@ graph LR
 
 \[\mathcal{L} = \mathbb{E}_{q_{\phi}(z\vert x)}[-\ln q_{\phi}(z\vert x)+\ln p_{\theta}(x,z) ]\]
 
-&lt;p&gt;\(\ln p_{\theta}(x)\) can be taken out of the expectation because it does not depend on \(z\). Since D_{KL} is non-negative, \(\mathcal{L}\) serves as a &lt;em&gt;lower bound&lt;/em&gt; to \(\ln p_{\theta}(x)\). In other words:&lt;/p&gt;
+&lt;p&gt;\(\ln p_{\theta}(x)\) can be taken out of the expectation because it does not depend on \(z\). Since $D_{KL}$ is non-negative, \(\mathcal{L}\) serves as a &lt;em&gt;lower bound&lt;/em&gt; to \(\ln p_{\theta}(x)\). In other words:&lt;/p&gt;
 
 \[\ln p_{\theta}(x)  \ge \mathcal{L}\]
 
