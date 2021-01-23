@@ -1,4 +1,239 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-16T22:37:20-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Biased Random Walk</title><subtitle>machine learning, physics, biotechnology</subtitle><entry><title type="html">A Comparison of COVID-19 vaccines</title><link href="http://localhost:4000/articles/covid19-vaccines.html" rel="alternate" type="text/html" title="A Comparison of COVID-19 vaccines" /><published>2020-12-28T00:00:00-05:00</published><updated>2020-12-28T00:00:00-05:00</updated><id>http://localhost:4000/articles/covid19-vaccines</id><content type="html" xml:base="http://localhost:4000/articles/covid19-vaccines.html">&lt;p&gt;My notes on COVID-19 vaccines currently approved by FDA for emergence use.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-23T17:42:19-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Biased Random Walk</title><subtitle>machine learning, physics, biotechnology</subtitle><entry><title type="html">Mean field theory in phyics and machine learning</title><link href="http://localhost:4000/articles/mean_field.html" rel="alternate" type="text/html" title="Mean field theory in phyics and machine learning" /><published>2021-01-22T00:00:00-05:00</published><updated>2021-01-22T00:00:00-05:00</updated><id>http://localhost:4000/articles/mean_field_theory</id><content type="html" xml:base="http://localhost:4000/articles/mean_field.html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#ising-model-and-its-mean-field-approximation&quot; id=&quot;markdown-toc-ising-model-and-its-mean-field-approximation&quot;&gt;Ising model and it’s mean field approximation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#deriving-the-mean-field&quot; id=&quot;markdown-toc-deriving-the-mean-field&quot;&gt;Deriving the mean field&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#gibbs-bogoliubov-feynman-inequality&quot; id=&quot;markdown-toc-gibbs-bogoliubov-feynman-inequality&quot;&gt;Gibbs-Bogoliubov-Feynman inequality&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#explicit-expression-of-the-lower-bound&quot; id=&quot;markdown-toc-explicit-expression-of-the-lower-bound&quot;&gt;Explicit expression of the lower bound&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#variational-mean-field&quot; id=&quot;markdown-toc-variational-mean-field&quot;&gt;Variational mean field&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#connection-to-kl-divergence&quot; id=&quot;markdown-toc-connection-to-kl-divergence&quot;&gt;Connection to KL divergence&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#additional-information&quot; id=&quot;markdown-toc-additional-information&quot;&gt;Additional information&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;ising-model-and-its-mean-field-approximation&quot;&gt;Ising model and it’s mean field approximation&lt;/h1&gt;
+
+&lt;p&gt;An Ising model is a mathematical model that can explain the physical behavior of magnets. It was instrumental in understanding phase transition.&lt;/p&gt;
+
+&lt;p&gt;An Ising model with $N$ spins. The i-th spin is $S_i$. Each spin can only take one of the two states: $+1$ or $-1$. $B$ is magnetic field. $J$ is interaction strength between two neighboring spins. Total energy is:&lt;/p&gt;
+
+\[\begin{equation}
+E = \sum_i B S_i + J \sum_{ij} S_i S_j
+\label{ising}
+\end{equation}\]
+
+&lt;p&gt;The $j$ in second term sums over nearest neighbor.  The first term is the interaction between the external field $B$ and individual spins, which is easy to deal with. The second term is hard – It is the interaction &lt;em&gt;between&lt;/em&gt; the spins, a product of two unknowns. In other words, the second term denotes &lt;em&gt;coupling&lt;/em&gt; between the spins.&lt;/p&gt;
+
+&lt;p&gt;To simplify the problem, we can imagine each spin $S_i$ feels an average spin $\bar{S}$ coming from each of its neighbors, much like the external field $B$. By doing that, the second term of Eq. ($\ref{ising}$) depends on a single spin instead of two. It is now just like the first term involving a single summation.&lt;/p&gt;
+
+&lt;p&gt;The total energy Eq.($\ref{ising}$) becomes&lt;/p&gt;
+
+\[\begin{equation}
+E_{MF} = \sum_i B S_i + J \sum_{i} S_i \bar{S} = (B+  z J \bar{S} ) \sum_{i} S_i
+\label{E_mf}
+\end{equation}\]
+
+&lt;p&gt;We can define mean field&lt;/p&gt;
+
+\[\begin{equation}
+\Delta B = z J \bar{S}
+\label{mean_field_B}
+\end{equation}\]
+
+&lt;p&gt;and $z$ is the number of nearest neighbor (e.g. 4 for a square lattice).&lt;/p&gt;
+
+&lt;p&gt;Note that although the mean field energy Eq.(\ref{E_mf}) is simpler than Eq.(\ref{ising}), it is still a function of all spins, i.e. $E_{MF}(s_1, s_2,..,s_N)$. Only that now the energy is a linear function of the spins.&lt;/p&gt;
+
+&lt;h1 id=&quot;deriving-the-mean-field&quot;&gt;Deriving the mean field&lt;/h1&gt;
+
+&lt;h2 id=&quot;gibbs-bogoliubov-feynman-inequality&quot;&gt;Gibbs-Bogoliubov-Feynman inequality&lt;/h2&gt;
+
+&lt;p&gt;The mean field approximation is a way to simplify the partition function and make it possible for analytical treatment. In this section, we will show mean field approximation results in a lower bound to the partition function. (Partition function is defined as the sum of the  probabilities of all possible states.  It is an important expression in statistical mechanics. From it we can calculate many physical quantities such as average spin.)&lt;/p&gt;
+
+&lt;p&gt;Partition function of Ising model is&lt;/p&gt;
+
+\[\begin{equation}
+Z = \sum_{s_1, s_2 ... s_N} \exp[-\beta E(s_1, s_2, ..., s_N)]
+\end{equation}\]
+
+&lt;p&gt;The sum is over all spin configurations, .i.e. $s_1 =\pm1, s_2=\pm1$ etc.&lt;/p&gt;
+
+&lt;p&gt;This partition function is hard to evaluate. We can try to simplify it to make it computationally tractable. One way to do it is to find a way to replace the energy $E$ whith its mean value.&lt;/p&gt;
+
+&lt;p&gt;Let $E = E_{MF} + \Delta E$. $\Delta E$ is the energy difference from the mean field energy $E_{MF}$. The partition function can be rewritten as&lt;/p&gt;
+
+\[\begin{align}
+Z &amp;amp;= \sum \exp[-\beta (E_{MF} + \Delta E)]  \\
+&amp;amp;= \sum Z_{MF} \frac{\exp[-\beta (E_{MF} + \Delta E)]}{Z_{MF}}  \\
+&amp;amp;=  Z_{MF} \langle \exp(-\beta \Delta E) \rangle_{MF} \label{mf_partition}
+\end{align}\]
+
+&lt;p&gt;$Z_{MF}=\sum \exp( - \beta E_{MF} )$ is the mean-field partition function, $\langle \rangle_{MF} $ denotes expectation value weighted over mean field probabilities. Now the expectation value is still hard to evaluate. We can &lt;em&gt;move&lt;/em&gt; the expectation operator to the exponent of the exponential function by&lt;/p&gt;
+
+\[\begin{align}
+\langle\exp(-\beta \Delta E )\rangle &amp;amp;=   \langle \exp(-\beta \langle \Delta E \rangle) \exp(-\beta (\Delta E - \langle \Delta E \rangle  ) \rangle  \\
+&amp;amp;\ge \exp(-\beta \langle \Delta E \rangle)
+\end{align}\]
+
+&lt;p&gt;Where we used&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$\exp(x) &amp;gt;= 1 + x$ (You can see this as Taylor’s expansion or &lt;a href=&quot;https://en.wikipedia.org/wiki/Jensen%27s_inequality&quot;&gt;Jensen’s inequality&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;$ \exp(\langle \Delta E \rangle) $ is just a number and does not suject to the average.&lt;/li&gt;
+  &lt;li&gt;The second $\exp()$ became 1 after first order expansion $\exp(x) &amp;gt;= 1 + x$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The result is the &lt;strong&gt;Gibbs-Bogoliubov-Feynman inequality&lt;/strong&gt;:&lt;/p&gt;
+
+\[\begin{equation}
+Z \ge Z_{MF}\exp(-\beta \langle \Delta E \rangle_{MF})
+\label{gbf}
+\end{equation}\]
+
+&lt;p&gt;We can use $Z_{MF}$ instead of $Z$. The trade-off is now we have the &lt;em&gt;lower bound&lt;/em&gt; instead of the actual partition function, introducing a biased error. But this makes the function computable, so we would take it…&lt;/p&gt;
+
+&lt;h2 id=&quot;explicit-expression-of-the-lower-bound&quot;&gt;Explicit expression of the lower bound&lt;/h2&gt;
+
+&lt;p&gt;We can further calculate $\langle \Delta E \rangle$ for the Ising model.&lt;/p&gt;
+
+\[\begin{equation}
+\Delta E = E - E_{MF}
+\end{equation}\]
+
+&lt;p&gt;Recall&lt;/p&gt;
+
+\[\begin{equation}
+E = \sum_i B S_i + J \sum_{ij} S_i S_j
+\end{equation}\]
+
+&lt;p&gt;The mean field energy is&lt;/p&gt;
+
+\[\begin{equation}
+E_{MF} = (B+ z J \bar{S}) \sum_{i} S_i
+\end{equation}\]
+
+&lt;p&gt;So&lt;/p&gt;
+
+\[\begin{equation}
+\langle E_{MF} \rangle = N (B + \Delta B) \bar{S}
+\end{equation}\]
+
+&lt;p&gt;The factor 1/2 in interaction term accounts for double counting.&lt;/p&gt;
+
+\[\begin{equation}
+\langle E \rangle = \sum_i B \bar{S_i} + J \sum_{ij} \bar{S_i} \bar{S_j} = N (B \bar{S} + \frac{J}{2} z \bar{S}^2)
+\end{equation}\]
+
+&lt;p&gt;Note that we can write $ \overline{S_i S_j} = \bar{S_i} \bar{S_j}$ becasue the mean field energy that’s average over is a linear summation of the spins.&lt;/p&gt;
+
+\[\begin{equation}
+\langle \Delta E \rangle = \langle E \rangle - \langle E_{MF} \rangle = N (\frac{J}{2} z \bar{S}^2-\Delta B \bar{S}  )
+\end{equation}\]
+
+&lt;p&gt;Note that the mean spin $\bar{S}$ is a function of the mean field $\Delta B$ because the field is created by the spin self-consistently.&lt;/p&gt;
+
+&lt;p&gt;Explicitly, The lower bound of partition function is:&lt;/p&gt;
+
+\[\begin{equation}
+Z \ge Z_{MF}\exp(-\beta \langle \Delta E \rangle_{MF}) = Z_{MF}\exp(-\beta N ( \frac{J}{2} z \bar{S}^2-\Delta B \bar{S}  ) )
+\end{equation}\]
+
+&lt;p&gt;Note that $Z_{MF}$ and $\bar{S}$ depend on $\Delta B$.&lt;/p&gt;
+
+&lt;h2 id=&quot;variational-mean-field&quot;&gt;Variational mean field&lt;/h2&gt;
+&lt;p&gt;What is the physical interpretation of the mean field Eq.(\ref{mean_field_B})? In this section, we show that it is the field that minimize the free energy. That sense sense because otherwise it won’t be the mean observed value!&lt;/p&gt;
+
+&lt;p&gt;Holtmonz free energy is given by&lt;/p&gt;
+
+\[\begin{equation}
+H = -k_B T \ln Z
+\end{equation}\]
+
+&lt;p&gt;We can find the mean field $\Delta B$ by minimziing the free energy $H$. Instead of working with $H$ directly, we minimize the upper bound (lower bound of partition function $Z$):&lt;/p&gt;
+
+\[\begin{equation}
+H_{UB} = -k_B T \ln [ Z_{MF}\exp(-\beta N (\frac{J}{2} z \bar{S}^2  - \Delta B \bar{S} ) ) ]
+\end{equation}\]
+
+\[\begin{equation}
+\quad\quad = -k_B T \ln Z_{MF} + N \frac{J}{2} z \bar{S}^2 -  N B \bar{S}
+\end{equation}\]
+
+&lt;p&gt;Minimizing the free energy upper bound w.r.t. the mean field $\Delta B$ (This is where the term &lt;strong&gt;variation&lt;/strong&gt; comes from):&lt;/p&gt;
+
+\[\begin{equation}
+ \partial H_{UB}/\partial \Delta B = 0
+\end{equation}\]
+
+&lt;p&gt;Using&lt;/p&gt;
+
+\[\begin{equation}
+ \partial Z_{MF}/\partial \Delta B = - N \beta \bar{S} Z_{MF}
+\end{equation}\]
+
+&lt;p&gt;It follows:&lt;/p&gt;
+
+\[\begin{equation}
+ \partial H_{UB}/\partial \Delta B = 0
+ \end{equation}\]
+
+\[\begin{equation}
+ \partial \bar{S}/\partial \Delta B (\Delta B - J z \bar{S}) = 0
+ \end{equation}\]
+
+&lt;p&gt;Therefore the mean field is&lt;/p&gt;
+
+\[\begin{equation}
+\Delta B = J z \bar{S}
+\end{equation}\]
+
+&lt;p&gt;the same result as using the mean field argument in the first section.&lt;/p&gt;
+
+&lt;h1 id=&quot;connection-to-kl-divergence&quot;&gt;Connection to KL divergence&lt;/h1&gt;
+
+&lt;p&gt;We wanted to approximate the true probability distribution&lt;/p&gt;
+
+\[\begin{equation}
+p(\mathbf{s}) = \exp(-\beta E(\mathbf{s}) )/Z 
+\label{p_dist}
+\end{equation}\]
+
+&lt;p&gt;with the mean field distribution&lt;/p&gt;
+
+\[\begin{equation}
+q(\mathbf{s}) = \exp(-\beta E_{MF}(\mathbf{s}) )/Z_{MF}
+\end{equation}\]
+
+&lt;p&gt;where $\mathbf{s} = (s_1, s_2, …, s_N)$ is a vector that defines configuration of all spins.&lt;/p&gt;
+
+&lt;p&gt;A way to measure how good $q(s)$ approximate $p(s)$ is through Kullback-Leibler divergence:&lt;/p&gt;
+
+&lt;p&gt;\begin{equation}
+KL(q(s)|| p(s)) = \int ds[ q(s) \log \frac{q(s)}{p(s)} ]
+\end{equation}&lt;/p&gt;
+
+&lt;p&gt;Putting in $p(s)$ and $q(s)$ gives&lt;/p&gt;
+
+&lt;p&gt;\begin{align}
+KL(q(s)|| p(s)) &amp;amp;= \int ds \frac{\exp(-\beta E_{MF})}{Z_{MF}}  ( \beta (E-E_{MF}) + \log \frac{Z}{Z_{MF}})
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;$Z$ and $Z_MF$ does not depend on the integrating variables and can be taken out of the integral.&lt;/p&gt;
+
+&lt;p&gt;\begin{align}
+KL(q(s)|| p(s)) &amp;amp;=  \beta \langle E-E_{MF} \rangle_{MF} + \log \frac{Z}{Z_{MF}}
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;Since KL divergence is always $\ge 0$, this gives&lt;/p&gt;
+
+\[\begin{align}
+\log \frac{Z}{Z_{MF}} &amp;amp;\ge - \beta \langle E-E_{MF} \rangle_{MF} \\
+Z &amp;amp;\ge Z_{MF}\exp(-\beta \langle \Delta E \rangle_{MF})
+\end{align}\]
+
+&lt;p&gt;which we recovers the Gibbs-Bogoliubov-Feynman inequality Eq.(\ref{gbf}). So one interpretation of mean field approximation is to find a distribution to closely approximate the true distribution Eq. (\ref{p_dist}). For this reason, &lt;a href=&quot;https://en.wikipedia.org/wiki/Variational_Bayesian_methods&quot;&gt;variational approaches&lt;/a&gt; to &lt;a href=&quot;https://en.wikipedia.org/wiki/Bayesian_inference&quot;&gt;Bayesian inference&lt;/a&gt; problems are sometimes called &lt;strong&gt;mean-field theory&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;additional-information&quot;&gt;Additional information&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://cpb-us-w2.wpmucdn.com/u.osu.edu/dist/3/67057/files/2018/09/Ising_model_MFT-25b1klj.pdf&quot;&gt;Mean Field Theory Solution of the Ising Model&lt;/a&gt; is an excellent write up of mean field solution to Ising model. &lt;a href=&quot;https://arxiv.org/pdf/1601.00670.pdf&quot;&gt;Variational Inference: A Review for Statisticians&lt;/a&gt; is an excellent review of applications of variational methods.&lt;/p&gt;</content><author><name>Andrew Wong</name></author><category term="physics,machine" /><category term="learning" /><summary type="html">An example of mean field theory in physics and connection to Bayesian inference.</summary></entry><entry><title type="html">A Comparison of COVID-19 vaccines</title><link href="http://localhost:4000/articles/covid19-vaccines.html" rel="alternate" type="text/html" title="A Comparison of COVID-19 vaccines" /><published>2020-12-28T00:00:00-05:00</published><updated>2020-12-28T00:00:00-05:00</updated><id>http://localhost:4000/articles/covid19-vaccines</id><content type="html" xml:base="http://localhost:4000/articles/covid19-vaccines.html">&lt;p&gt;My notes on COVID-19 vaccines currently approved by FDA for emergence use.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Table of Contents&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;

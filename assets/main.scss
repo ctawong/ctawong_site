@@ -5,10 +5,10 @@
 
 .post-content {
   h1 {
-    @include relative-font-size(2.5);
+    @include relative-font-size(2);
 
     @include media-query($on-laptop) {
-      @include relative-font-size(2.25);
+      @include relative-font-size(2);
     }
     border-bottom: 1px solid gray;
   }
