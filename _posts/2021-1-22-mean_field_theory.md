@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Mean field theory in phyics and machine learning 
+title: Mean field theory in physics and machine learning 
 categories: physics,machine learning
 permalink: /articles/mean_field.html
 excerpt: 'An example of mean field theory in physics and connection to Bayesian inference.'
@@ -266,7 +266,7 @@ Putting in $p(s)$ and $q(s)$ gives
 KL(q(s)|| p(s)) &= \int ds \frac{\exp(-\beta E_{MF})}{Z_{MF}}  ( \beta (E-E_{MF}) + \log \frac{Z}{Z_{MF}})
 \end{align}
 
-$Z$ and $Z_MF$ does not depend on the integrating variables and can be taken out of the integral.
+$Z$ and $Z_{MF}$ does not depend on the integrating variables and can be taken out of the integral.
 
 \begin{align}
 KL(q(s)|| p(s)) &=  \beta \langle E-E_{MF} \rangle_{MF} + \log \frac{Z}{Z_{MF}}
