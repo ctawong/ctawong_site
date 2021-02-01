@@ -39,7 +39,7 @@ But if enough number of points are sampled, the original distribution is recover
 
 ![](/assets/uploads/gibbs/gibbs_samples2.png)
 
-The codes that generate this example can be found [here](https://github.com/ctawong/Gibbs_sampling_example).
+The codes that generate this example can be found [here](https://github.com/ctawong/Gibbs_sampling_example/blob/master/Gibbs.ipynb).
 
 
 # Why does it work?
