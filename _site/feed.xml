@@ -1,4 +1,172 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-24T15:52:57-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Biased Random Walk</title><subtitle>machine learning, physics, biotechnology</subtitle><entry><title type="html">Mean field theory in physics and machine learning</title><link href="http://localhost:4000/articles/mean_field.html" rel="alternate" type="text/html" title="Mean field theory in physics and machine learning" /><published>2021-01-22T00:00:00-05:00</published><updated>2021-01-22T00:00:00-05:00</updated><id>http://localhost:4000/articles/mean_field_theory</id><content type="html" xml:base="http://localhost:4000/articles/mean_field.html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-01T01:48:51-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Biased Random Walk</title><subtitle>machine learning, physics, biotechnology</subtitle><entry><title type="html">Gibbs sampling</title><link href="http://localhost:4000/articles/gibbs_sampling.html" rel="alternate" type="text/html" title="Gibbs sampling" /><published>2021-01-31T00:00:00-05:00</published><updated>2021-01-31T00:00:00-05:00</updated><id>http://localhost:4000/articles/Gibbs_sampling</id><content type="html" xml:base="http://localhost:4000/articles/gibbs_sampling.html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#what-is-gibbs-sampling&quot; id=&quot;markdown-toc-what-is-gibbs-sampling&quot;&gt;What is Gibbs sampling?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#how-does-it-work&quot; id=&quot;markdown-toc-how-does-it-work&quot;&gt;How does it work?&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#procedure&quot; id=&quot;markdown-toc-procedure&quot;&gt;Procedure&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#example&quot; id=&quot;markdown-toc-example&quot;&gt;Example&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#why-does-it-work&quot; id=&quot;markdown-toc-why-does-it-work&quot;&gt;Why does it work?&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#markov-chain-monte-carlo-mcmc&quot; id=&quot;markdown-toc-markov-chain-monte-carlo-mcmc&quot;&gt;Markov Chain Monte Carlo (MCMC)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#proof&quot; id=&quot;markdown-toc-proof&quot;&gt;Proof&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;what-is-gibbs-sampling&quot;&gt;What is Gibbs sampling?&lt;/h1&gt;
+&lt;p&gt;Gibbs sampling is a method to generate samples from a multivariant distribution $P(x_1, x_2, …, x_d)$ using only conditional distributions $P(x_1|x_2…x_d)$, $P(x_2|x_1, x_3…x_d)$ and so on. It is used when the original distribution is hard to calculate but the conditional distributions are available.&lt;/p&gt;
+
+&lt;h1 id=&quot;how-does-it-work&quot;&gt;How does it work?&lt;/h1&gt;
+&lt;h2 id=&quot;procedure&quot;&gt;Procedure&lt;/h2&gt;
+&lt;p&gt;Starting with a sample $\mathbf{x}=(x_1, x_2…x_d)$, to generate a new sample $\mathbf{y}=(y_1, y_2…y_d)$, do the following&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Sample $y_1$ from $P(y_1\vert x_2, x_3…x_d)$.&lt;/li&gt;
+  &lt;li&gt;Sample $y_2$ from $P(y_2\vert y_1, x_3…x_d)$.&lt;/li&gt;
+  &lt;li&gt;Sample $y_3$ from $P(y_3\vert y_1, y_2, x_4…x_d)$&lt;/li&gt;
+  &lt;li&gt;… and so on. The last term is sampling $y_d$ from $P(y_d\vert y_1, y_2…y_{d-1})$.&lt;/li&gt;
+  &lt;li&gt;Now we have the new sample $\mathbf{y}$. Repeat for the next sample.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Note that the value of a new sample depends only on the the previous one, and not the one before, Gibbs sampling belongs to a class of methods called &lt;strong&gt;Markov Chain Monte Carlo (MCMC)&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;example&quot;&gt;Example&lt;/h2&gt;
+&lt;p&gt;Consider a mixture of two 2-dimensional normal distribution below with joint distribution $P(x,y) = \frac{1}{2} \left( \mathcal{N}(\mu_1, \text{cov}_1) + \mathcal{N}(\mu_2, \text{cov}_2) \right)$.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/uploads/gibbs/gibbs_actual.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can use the procedure above to to generate samples using only the conditional distribution $P(x\vert y)$ and $P(y\vert x)$. The sample chain could initially be trapped in one local distribution:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/uploads/gibbs/gibbs_samples1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But if enough number of points are sampled, the original distribution is recovered:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/uploads/gibbs/gibbs_samples2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The codes that generate this example can be found &lt;a href=&quot;https://github.com/ctawong/Gibbs_sampling_example&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;why-does-it-work&quot;&gt;Why does it work?&lt;/h1&gt;
+
+&lt;p&gt;This section outlines the proof of Gibbs sampling. I mostly follow &lt;a href=&quot;https://ocw.mit.edu/courses/economics/14-384-time-series-analysis-fall-2013/&quot;&gt;MIT 14.384 Time Series Analysis&lt;/a&gt;, Lectures &lt;a href=&quot;https://ocw.mit.edu/courses/economics/14-384-time-series-analysis-fall-2013/lecture-notes/MIT14_384F13_lec25.pdf&quot;&gt;25&lt;/a&gt; and &lt;a href=&quot;https://ocw.mit.edu/courses/economics/14-384-time-series-analysis-fall-2013/lecture-notes/MIT14_384F13_lec26.pdf&quot;&gt;26&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;markov-chain-monte-carlo-mcmc&quot;&gt;Markov Chain Monte Carlo (MCMC)&lt;/h2&gt;
+
+&lt;p&gt;Gibbs sampling generates a &lt;strong&gt;Markov chain&lt;/strong&gt;. That’s obvious because the series $X^{(1)}$, $X^{(2)}$, $X^{(3)}$ … depends only on the previous value. An important concept to understand is the &lt;strong&gt;transition Probability&lt;/strong&gt; $P(\mathbf{x}, \mathbf{y})$, the probability of generating sample $\mathbf{y}$ from the previous sample $\mathbf{x}$.&lt;/p&gt;
+
+&lt;p&gt;Suppose we want to sample a distribution $\pi(\mathbf{x})$, we want to generate samples in a way that the new sample still follows distribution $\pi(\mathbf{x})$. Mathematically, for transition probability $P(\mathbf{x}, \mathbf{y})$, the probability measure $\pi(\mathbf{x})$ is &lt;strong&gt;invariant&lt;/strong&gt; if&lt;/p&gt;
+
+\[\begin{equation}
+\pi(\mathbf{y})=\int P(\mathbf{x}, \mathbf{y}) \pi(\mathbf{x}) d \mathbf{x}
+\end{equation}\]
+
+&lt;p&gt;&lt;em&gt;and&lt;/em&gt; the transition probability is&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;irreducible (i.e. any point can reach any other points)&lt;/li&gt;
+  &lt;li&gt;aperiodic&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The MCMC problem is to find a transition probability $P(\mathbf{x}, \mathbf{y})$ such that $\pi(\mathbf{x})$ is invariant.&lt;/p&gt;
+
+&lt;h2 id=&quot;proof&quot;&gt;Proof&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&quot;#procedure&quot;&gt;procedure&lt;/a&gt; of Gibbs sampling outlined previously can be written as a transition probability&lt;/p&gt;
+
+\[\begin{align}
+P(\mathbf{x},\mathbf{y}) &amp;amp;= \pi(y_1|x_2,x_3,..,x_d) \pi(y_2|y_1,x_3,..,x_d)...\pi(y_d|y_1,y_2,..,y_{d-1})
+\\
+&amp;amp;=\prod_k \pi(y_k|y_1...y_{k-1}, x_{k+1}...x_{d})
+\end{align}\]
+
+&lt;p&gt;Let $\pi(\mathbf{x})$ be the distribution we want to sample from. We need to show $\pi(\mathbf{x})$ is invariant under this transition, i.e.&lt;/p&gt;
+
+\[\begin{align}
+\int P(\mathbf{x,y}) \pi(\mathbf{x}) d\mathbf{x} = \pi(\mathbf{y})
+\label{trans}
+\end{align}\]
+
+&lt;p&gt;In other words, if we follow $P(\mathbf{x},\mathbf{y})$ to get new sample $\mathbf{y}$ based on the previous sample $\mathbf{x}$, and repeat this process over and over again, we stay in the same distribution $\pi(\mathbf{x})$.&lt;/p&gt;
+
+&lt;p&gt;Since we need to integrate over $\mathbf{x}$, the first thing is to rewrite $P(\mathbf{x},\mathbf{y})$ using Bayes rule so that there’s no conditional on $\mathbf{x}$. Bayes rule is&lt;/p&gt;
+
+\[P(A|B) P(B) = P(B |A) P(A)\]
+
+&lt;p&gt;or if there’s always a conditional on $C$:&lt;/p&gt;
+
+\[P(A|B,C) P(B|C) = P(B |A,C) P(A|C)\]
+
+&lt;p&gt;Using&lt;/p&gt;
+
+\[\begin{align}
+A&amp;amp;=y_k \\
+B&amp;amp;= x_{k+1},...,x_{d}\\
+C&amp;amp;=y_1,..,y_{k-1} 
+\end{align}\]
+
+&lt;p&gt;We get&lt;/p&gt;
+
+\[\begin{align}
+\pi(y_k|y_1...y_{k-1}, x_{k+1}...x_{d}) = \frac{\pi(x_{k+1},...,x_{d}|y_1,..,y_{k} )\pi(y_k|y_1,..,y_{k-1} )}{\pi(x_{k+1},...,x_{d}|y_1,..,y_{k-1})}
+\end{align}\]
+
+&lt;p&gt;Substituting this to Eq.(\ref{trans}), and noticing that $\pi(y_k\vert y_1,..,y_{k-1} )$ does not depend on the integrating variable $\mathbf{x}$,&lt;/p&gt;
+
+\[\begin{align}
+\int P(\mathbf{x,y}) \pi(\mathbf{x}) d\mathbf{x} = \prod_k\pi(y_k|y_1,..,y_{k-1} ) \int \prod_k \frac{\pi(x_{k+1},...,x_{d}|y_1,..,y_{k} )}{\pi(x_{k+1},...,x_{d}|y_1,..,y_{k-1})} \pi(\mathbf{x}) d\mathbf{x}
+\end{align}\]
+
+&lt;p&gt;The first product&lt;/p&gt;
+
+\[\begin{align}
+\prod_k\pi(y_k|y_1,..,y_{k-1} ) = \pi(\mathbf{y})
+\end{align}\]
+
+&lt;p&gt;because&lt;/p&gt;
+
+\[\begin{align}
+\pi(\mathbf{y}) &amp;amp;= \pi(y_1, y_2,..,y_d)\\ 
+&amp;amp;= \pi(y_d|y_1,..,y_{d-1})\pi(y_1,..,y_{d-1})\\
+&amp;amp;= \pi(y_d|y_1,..,y_{d-1})\pi(y_{d-1}|y_1,..,y_{d-2})\pi(y_1,..,y_{d-2}) \\
+&amp;amp;\text{... and so on}
+\end{align}\]
+
+&lt;p&gt;So we have&lt;/p&gt;
+
+\[\begin{align}
+\int P(\mathbf{x,y}) \pi(\mathbf{x}) d\mathbf{x} = \pi(\mathbf{y}) \int \prod_k \frac{\pi(x_{k+1},...,x_{d}|y_1,..,y_{k} )}{\pi(x_{k+1},...,x_{d}|y_1,..,y_{k-1})} \pi(\mathbf{x}) d\mathbf{x}
+\end{align}\]
+
+&lt;p&gt;We need to show the integral on the right hand side to be exactly 1.&lt;/p&gt;
+
+&lt;p&gt;We start by writing out the terms explicitly and use $\pi(x_1,..x_d) = \pi(x_1\vert x_2…x_d)\pi(x_2…x_d)$,&lt;/p&gt;
+
+\[\require{cancel}
+\begin{align}
+\int \prod_k \frac{\pi(x_{k+1},...,x_{d}|y_1,..,y_{k} )}{\pi(x_{k+1},...,x_{d}|y_1,..,y_{k-1})} \pi(\mathbf{x}) d\mathbf{x} = \int \frac{\pi(x_2...x_d|y_1)}{\cancel{\pi(x_2...x_d)}} \frac{\pi(x_3...x_d|y_1,y_2)}{\pi(x_3...x_d|y_1)} ... \pi(x_1|x_2...x_d)\cancel{\pi(x_2...x_d)} dx_1 dx_2...dx_d
+\end{align}\]
+
+&lt;p&gt;The only term that depends on $x_1$ is  $\pi(x_1\vert x_2…x_d)$ and it is integrated out to be 1. The integral becomes&lt;/p&gt;
+
+\[\begin{align}
+= \int \frac{\pi(x_2...x_d|y_1)}{\pi(x_3...x_d|y_1)} \frac{\pi(x_3...x_d|y_1,y_2)}{\pi(x_4...x_d|y_1,y_2)} ... \pi(x_d|y_1...y_{d-1}) dx_2...dx_d
+\end{align}\]
+
+&lt;p&gt;Turning each fraction into a conditional probability&lt;/p&gt;
+
+\[\begin{align}
+\frac{\pi(x_2...x_d|y_1)}{\pi(x_3...x_d|y_1)} = \pi(x_2|x_3..x_d,y_1)
+\end{align}\]
+
+&lt;p&gt;and so on. The integral becomes&lt;/p&gt;
+
+\[\begin{align}
+= \int \pi(x_2|x_3..x_d,y_1) \pi(x_3|x_4..x_d,y_1, y_2) ... \pi(x_d|y_1...y_{d-1}) dx_2...dx_d
+\end{align}\]
+
+&lt;p&gt;Only the first term depends on $x_2$ and it is integrated out to be 1. After that, only the leading term depends on $x_3$ and it is integrated out to be 1 and so on. Therefore the whole integral is 1 resulting in&lt;/p&gt;
+
+\[\begin{align}
+\int P(\mathbf{x,y}) \pi(\mathbf{x}) d\mathbf{x} = \pi(\mathbf{y})
+\end{align}\]
+
+&lt;p&gt;So the transition probability from Gibbs sampling is invariant. If we sample according to the Gibbs scheme, we can get unbiased samples of $\pi(\mathbf{x})$.&lt;/p&gt;</content><author><name>Andrew Wong</name></author><category term="machine" /><category term="learning" /><summary type="html">How and why does Gibbs sampling work.</summary></entry><entry><title type="html">Mean field theory in physics and machine learning</title><link href="http://localhost:4000/articles/mean_field.html" rel="alternate" type="text/html" title="Mean field theory in physics and machine learning" /><published>2021-01-22T00:00:00-05:00</published><updated>2021-01-22T00:00:00-05:00</updated><id>http://localhost:4000/articles/mean_field_theory</id><content type="html" xml:base="http://localhost:4000/articles/mean_field.html">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#ising-model-and-its-mean-field-approximation&quot; id=&quot;markdown-toc-ising-model-and-its-mean-field-approximation&quot;&gt;Ising model and it’s mean field approximation&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#deriving-the-mean-field&quot; id=&quot;markdown-toc-deriving-the-mean-field&quot;&gt;Deriving the mean field&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#gibbs-bogoliubov-feynman-inequality&quot; id=&quot;markdown-toc-gibbs-bogoliubov-feynman-inequality&quot;&gt;Gibbs-Bogoliubov-Feynman inequality&lt;/a&gt;&lt;/li&gt;
