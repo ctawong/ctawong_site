@@ -11,6 +11,9 @@ author: Andrew Wong
 * TOC
 {:toc}
 
+# Abstract
+This article provides the recipes, simple Python codes and mathematical proof to the most basic form of Gibbs sampling.
+
 # What is Gibbs sampling?
 Gibbs sampling is a method to generate samples from a multivariant distribution $P(x_1, x_2, ..., x_d)$ using only conditional distributions $P(x_1|x_2...x_d)$, $P(x_2|x_1, x_3...x_d)$ and so on. It is used when the original distribution is hard to calculate but the conditional distributions are available.
 

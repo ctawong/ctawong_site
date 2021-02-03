@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-01T01:52:20-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Biased Random Walk</title><subtitle>machine learning, physics, biotechnology</subtitle><entry><title type="html">Gibbs sampling</title><link href="http://localhost:4000/articles/gibbs_sampling.html" rel="alternate" type="text/html" title="Gibbs sampling" /><published>2021-01-31T00:00:00-05:00</published><updated>2021-01-31T00:00:00-05:00</updated><id>http://localhost:4000/articles/Gibbs_sampling</id><content type="html" xml:base="http://localhost:4000/articles/gibbs_sampling.html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-03T15:53:31-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Biased Random Walk</title><subtitle>machine learning, physics, biotechnology</subtitle><entry><title type="html">Gibbs sampling</title><link href="http://localhost:4000/articles/gibbs_sampling.html" rel="alternate" type="text/html" title="Gibbs sampling" /><published>2021-01-31T00:00:00-05:00</published><updated>2021-01-31T00:00:00-05:00</updated><id>http://localhost:4000/articles/Gibbs_sampling</id><content type="html" xml:base="http://localhost:4000/articles/gibbs_sampling.html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#abstract&quot; id=&quot;markdown-toc-abstract&quot;&gt;Abstract&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#what-is-gibbs-sampling&quot; id=&quot;markdown-toc-what-is-gibbs-sampling&quot;&gt;What is Gibbs sampling?&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#how-does-it-work&quot; id=&quot;markdown-toc-how-does-it-work&quot;&gt;How does it work?&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#procedure&quot; id=&quot;markdown-toc-procedure&quot;&gt;Procedure&lt;/a&gt;&lt;/li&gt;
@@ -11,6 +12,9 @@
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
+&lt;p&gt;This article provides the recipes, simple Python codes and mathematical proof to the most basic form of Gibbs sampling.&lt;/p&gt;
 
 &lt;h1 id=&quot;what-is-gibbs-sampling&quot;&gt;What is Gibbs sampling?&lt;/h1&gt;
 &lt;p&gt;Gibbs sampling is a method to generate samples from a multivariant distribution $P(x_1, x_2, …, x_d)$ using only conditional distributions $P(x_1|x_2…x_d)$, $P(x_2|x_1, x_3…x_d)$ and so on. It is used when the original distribution is hard to calculate but the conditional distributions are available.&lt;/p&gt;
